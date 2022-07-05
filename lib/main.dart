@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_exercise/posts/screens/home.dart';
 import 'posts/screens/home.dart';
 
+
 void main() {
   runApp(const MaterialApp(
     home: Home(),
@@ -10,7 +11,6 @@ void main() {
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

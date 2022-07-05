@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -27,7 +26,6 @@ class _MyHomePageState extends State<HomePage> {
   };
 
   Color? selectedColor;
-
   void _setColor(String colorName, Color color) {
     setState(() {
       selectedColor = color;
