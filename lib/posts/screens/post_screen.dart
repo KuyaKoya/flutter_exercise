@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/data/post/post.dart';
+import 'package:flutter_exercise/posts/widgets/post.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({Key? key}) : super(key: key);
@@ -7,46 +9,34 @@ class PostScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostScreen> {
-  final Map<String, Color> colors = {
-    'purple': Colors.purple,
-    'blue': Colors.blue,
-    'yellow': Colors.yellow,
-    'pink': Colors.pink,
-    'teal': Colors.teal,
-    'orange': Colors.orange
-  };
-
-  Color? selectedColor;
-  void _setColor(String colorName, Color color) {
-    setState(() {
-      selectedColor = color;
-    });
-  }
+  final List<Post> posts = [
+    Post(
+        userId: "1",
+        id: "1",
+        title: "Genshin Impact",
+        body:
+            "Fanart of Signora with a gun from #GenshinImpact cause I'm still coping that she's gone"),
+    Post(
+        userId: "2",
+        id: "2",
+        title: "Monster Hunter",
+        body:
+            "I JUST CAME TO SAY GORE MAGALA IS BACK BABY \n ALSO DAIMYO HERMITAUR"),
+    Post(userId: "3", id: "3", title: "Finding Nemo", body: "Where is my son?"),
+    Post(userId: "4", id: "4", title: "Finding Dory", body: "Where am I?"),
+    Post(userId: "5", id: "5", title: "Flutter", body: "Ganbaremashou!"),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: selectedColor,
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (var entry in colors.entries)
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: entry.value,
-                      minimumSize: const Size(300, 60),
-                    ),
-                    child: const Text(''),
-                    onPressed: () => _setColor(entry.key, entry.value),
-                  ),
-                )
-            ],
-          ),
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (var post in posts) PostContainer(post.title, post.body),
+          ],
         ),
       ),
     );
