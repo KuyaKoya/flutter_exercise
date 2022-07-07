@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-class PostContainer extends StatelessWidget {
-  const PostContainer(this.postTitle, this.postBody);
+class PostItem extends StatelessWidget {
+  const PostItem(this.postTitle, this.postBody);
 
   final String postTitle;
   final String postBody;
@@ -42,6 +42,7 @@ class PostContainer extends StatelessWidget {
                             postTitle,
                             style: _textStyle,
                             maxLines: 2,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         Padding(

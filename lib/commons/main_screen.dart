@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/posts/screens/user_screen.dart';
+import 'package:flutter_exercise/users/user_screen.dart';
 
-import 'album_screen.dart';
-import 'post_screen.dart';
+import '../albums/album_screen.dart';
+import '../posts/screens/post_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

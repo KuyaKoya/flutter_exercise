@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/posts/screens/main_screen.dart';
-import 'posts/screens/main_screen.dart';
+import 'package:flutter_exercise/commons/main_screen.dart';
+import 'commons/main_screen.dart';
 
 void main() {
   runApp(const MaterialApp(
