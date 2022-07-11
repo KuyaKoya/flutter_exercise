@@ -22,19 +22,19 @@ class _PostScreenState extends State<PostScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Center(
-          child: FutureBuilder<List<Post>>(
-        future: futurePost,
-        builder: (context, snapshot) {
-          debugPrint('$snapshot');
-          if (snapshot.hasData) {
-            return PostList(snapshot.data!);
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
+        child: FutureBuilder<List<Post>>(
+          future: futurePost,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return PostList(snapshot.data!);
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
 
-          return const CircularProgressIndicator();
-        },
-      )),
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../data/post/post.dart';
+import 'package:flutter_exercise/data/post/post.dart';
 import 'post_item.w.dart';
 
 class PostList extends StatelessWidget {
