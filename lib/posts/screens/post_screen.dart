@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/data/post/post.dart';
 import 'package:flutter_exercise/posts/widgets/post_list.w.dart';
-import 'package:flutter_exercise/services/post_reqeust.dart';
+import 'package:flutter_exercise/services/post_request.dart';
 
 class PostScreen extends StatefulWidget {
   const PostScreen({Key? key}) : super(key: key);
