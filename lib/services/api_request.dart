@@ -2,14 +2,14 @@ import 'package:flutter_exercise/data/album/album.dart';
 import 'package:flutter_exercise/data/comment/comment.dart';
 import 'package:flutter_exercise/data/photo/photo.dart';
 import 'package:flutter_exercise/data/post/post.dart';
-import 'package:flutter_exercise/data/response_data.dart';
 import 'package:flutter_exercise/data/user/user.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'dart:async';
 
 class ApiRequest {
+  ApiRequest(this.url);
+
   String url = '';
 
   Future<String> get() async {
