@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class AlbumScreen extends StatefulWidget {
@@ -9,20 +10,28 @@ class AlbumScreen extends StatefulWidget {
 class _AlbumScreenState extends State<AlbumScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
-        crossAxisCount: 2,
-        // Generate 100 widgets that display their index in the List.
-        children: List.generate(100, (index) {
-          return Center(
-            child: Text(
-              'Item $index',
-              style: Theme.of(context).textTheme.headline5,
+    return SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
+              child: GridView(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, crossAxisSpacing: 16),
+                children: [
+                  Image.network('https://picsum.photos/250?image=1'),
+                  Image.network('https://picsum.photos/250?image=2'),
+                  Image.network('https://picsum.photos/250?image=3'),
+                ],
+              ),
             ),
-          );
-        }),
+          ],
+        ),
       ),
     );
   }
