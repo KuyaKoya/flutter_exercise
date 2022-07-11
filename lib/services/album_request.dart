@@ -1,18 +1,18 @@
 import 'package:flutter_exercise/services/api_request.dart';
 
-import '../data/user/user.dart';
+import '../data/album/album.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'dart:async';
 
-class UserRequest extends ApiRequest {
+class AlbumRequest extends ApiRequest {
   @override
-  String url = "https://jsonplaceholder.typicode.com/users";
+  String url = 'https://jsonplaceholder.typicode.com/albums';
 
-  Future<List<User>> getPosts() async {
+  Future<List<Album>> getPosts() async {
     return super.get().then((data) => 
-      compute(super.parse<User>, data)
+      compute(super.parse<Album>, data)
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../response_data.dart';
+
 part 'comment.g.dart';
 
 @JsonSerializable()
-class Comment {
+class Comment implements ResponseData<Comment> {
   final String postId;
   final String id;
   final String name;
@@ -18,8 +20,11 @@ class Comment {
     required this.body,
   });
 
-  factory Comment.fromJson(Map<String, dynamic> json) =>
-      _$CommentFromJson(json);
-
+  @override
   Map<String, dynamic> toJson() => _$CommentToJson(this);
+  
+  @override
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return _$CommentFromJson(json);
+  }
 }

@@ -1,9 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../response_data.dart';
+
 part 'photo.g.dart';
 
 @JsonSerializable()
-class Photo {
+class Photo implements ResponseData<Photo> {
   final String albumId;
   final String id;
   final String title;
@@ -18,7 +20,11 @@ class Photo {
     required this.thumbnailUrl,
   });
 
-  factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
-
+  @override
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
+  
+  @override
+  factory Photo.fromJson(Map<String, dynamic> json) {
+    return _$PhotoFromJson(json);
+  }
 }

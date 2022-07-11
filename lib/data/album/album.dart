@@ -1,9 +1,10 @@
+import 'package:flutter_exercise/data/response_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'album.g.dart';
 
 @JsonSerializable()
-class Album {
+class Album implements ResponseData<Album> {
   final String userId;
   final int id;
   final String title;
@@ -13,8 +14,11 @@ class Album {
     required this.id,
     required this.title,
   });
-
-  factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
-
+  @override
   Map<String, dynamic> toJson() => _$AlbumToJson(this);
+  
+  @override
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return _$AlbumFromJson(json);
+  }
 }

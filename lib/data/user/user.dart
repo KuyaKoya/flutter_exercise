@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../response_data.dart';
 import 'address/address.dart';
 import 'company/company.dart';
 
 part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class User {
+class User implements ResponseData<User> {
   final int id;
   final String username;
   final String email;
@@ -25,7 +26,11 @@ class User {
     required this.company,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
+  @override
   Map<String, dynamic> toJson() => _$UserToJson(this);
+  
+  @override
+  factory User.fromJson(Map<String, dynamic> json) {
+    return _$UserFromJson(json);
+  }
 }
