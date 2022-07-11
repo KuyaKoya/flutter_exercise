@@ -3,9 +3,8 @@ import 'package:flutter_exercise/screens/posts/post_screen.dart';
 import 'package:flutter_exercise/screens/users/user_details.w.dart';
 
 import '../../data/post/post.dart';
-import '../../services/post_reqeust.dart';
+import '../../services/post_request.dart';
 import '../albums/album_screen.dart';
-import 'user_content.w.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -32,7 +31,6 @@ class _UserScreenState extends State<UserScreen> {
 
   void _onItemTapped(int index) {
     setState(() {
-      debugPrint('$index');
       selectedIndex = index;
     });
   }
@@ -51,6 +49,7 @@ class _UserScreenState extends State<UserScreen> {
           const UserDetails(),
           Expanded(
             child: ListView(
+              shrinkWrap: true,
               children: [
                 widgetOptions.elementAt(selectedIndex),
               ],
