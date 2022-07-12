@@ -1,4 +1,5 @@
-import 'package:flutter_exercise/data/response_data.dart';
+
+import '../response_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post.g.dart';

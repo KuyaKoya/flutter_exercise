@@ -1,19 +1,20 @@
-import 'package:flutter_exercise/data/album/album.dart';
-import 'package:flutter_exercise/data/comment/comment.dart';
-import 'package:flutter_exercise/data/photo/photo.dart';
-import 'package:flutter_exercise/data/post/post.dart';
-import 'package:flutter_exercise/data/user/user.dart';
+import 'package:flutter_exercise/data/Request/request_data.dart';
+import 'package:flutter_exercise/data/Response/album/album.dart';
+import 'package:flutter_exercise/data/Response/comment/comment.dart';
+import 'package:flutter_exercise/data/Response/photo/photo.dart';
+import 'package:flutter_exercise/data/Response/post/post.dart';
+import 'package:flutter_exercise/data/Response/user/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
 class ApiRequest {
-  ApiRequest(this.url);
+  ApiRequest(this.request);
 
-  String url = '';
+  RequestData request;
 
   Future<String> get() async {
-    final response = await http.get(Uri.parse(url));
+    final response = await http.get(request.parseToURL());
     if (response.statusCode == 200) {
       return response.body;
     } else {

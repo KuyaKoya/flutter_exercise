@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/data/post/post.dart';
+import 'package:flutter_exercise/data/Request/post_request_data.dart';
+import 'package:flutter_exercise/data/Response/post/post.dart';
 import 'package:flutter_exercise/services/post_request.dart';
 
 import 'post_list.w.dart';
@@ -16,7 +17,7 @@ class _PostScreenState extends State<PostScreen> {
   @override
   void initState() {
     super.initState();
-    futurePost = PostRequest().getPosts();
+    futurePost = PostRequest(PostRequestData(id: 1)).getPosts();
   }
 
   @override

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/data/Request/user_request_data.dart';
+import 'package:flutter_exercise/data/Response/user/user.dart';
+import 'package:flutter_exercise/services/user_request.dart';
 
 class UserContent extends StatefulWidget {
   const UserContent({Key? key}) : super(key: key);
@@ -8,6 +11,13 @@ class UserContent extends StatefulWidget {
 }
 
 class _UserContentState extends State<UserContent> {
+  late Future<List<User>> futureUser;
+
+  @override
+  void initState() {
+    super.initState();
+    futureUser = UserRequest(UserRequestData()).getUsers();
+  }
   @override
   Widget build(BuildContext context) {
     return Row(

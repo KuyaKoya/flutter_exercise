@@ -1,13 +1,14 @@
 import 'package:flutter_exercise/services/api_request.dart';
 
-import '../data/user/user.dart';
+import '../data/Request/request_data.dart';
+import '../data/Response/user/user.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 
 class UserRequest extends ApiRequest {
-  UserRequest() : super("https://jsonplaceholder.typicode.com/users");
+  UserRequest(RequestData request) : super(request);
 
-  Future<List<User>> getPosts() async {
+  Future<List<User>> getUsers() async {
     return super.get().then((data) => 
       compute(super.parse<User>, data)
     );
