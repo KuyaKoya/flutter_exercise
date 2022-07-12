@@ -3,9 +3,7 @@ import 'package:flutter_exercise/data/Request/user_request_data.dart';
 import 'package:flutter_exercise/screens/posts/post_screen.dart';
 import 'package:flutter_exercise/screens/users/user_details.w.dart';
 
-import '../../data/Response/post/post.dart';
 import '../../data/Response/user/user.dart';
-import '../../services/post_request.dart';
 import '../../services/user_request.dart';
 import '../albums/album_screen.dart';
 
@@ -16,8 +14,6 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  static const TextStyle _textStyle =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
 
   late Future<List<User>> futureUser;
   @override

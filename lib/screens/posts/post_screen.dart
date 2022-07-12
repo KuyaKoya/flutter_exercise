@@ -17,7 +17,7 @@ class _PostScreenState extends State<PostScreen> {
   @override
   void initState() {
     super.initState();
-    futurePost = PostRequest(PostRequestData(id: 1)).getPosts();
+    futurePost = PostRequest(PostRequestData()).getPosts();
   }
 
   @override

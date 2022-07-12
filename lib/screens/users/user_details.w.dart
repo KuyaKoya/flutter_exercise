@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class UserDetails extends StatefulWidget {
-  const UserDetails({Key? key, }) : super(key: key);
-  
+  const UserDetails({
+    Key? key,
+  }) : super(key: key);
+
   @override
   State<UserDetails> createState() => _UserDetailsState();
 }
 
 class _UserDetailsState extends State<UserDetails> {
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -38,7 +39,9 @@ class _UserDetailsState extends State<UserDetails> {
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.person),
+                      child: Image.network(
+                        'https://picsum.photos/seed/841/600',
+                      ),
                     ),
                   ),
                 ),

@@ -14,58 +14,102 @@ class PostItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const UserScreen();
-          }));
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Container(
-        margin: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
+        decoration: const BoxDecoration(
+          shape: BoxShape.rectangle,
+          border: Border(
+            top: BorderSide(color: Colors.grey),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 2,
-                  ),
-                ),
-                child: Row(
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10, 10, 10, 10),
-                            child: AutoSizeText(
-                              postTitle,
-                              style: _textStyle,
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UserScreen(),
                             ),
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.network(
+                            'https://picsum.photos/seed/841/600',
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10, 10, 10, 10),
-                            child: AutoSizeText(
-                              postBody,
-                              style: _textStyle,
-                              maxLines: 4,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ],
                 ),
+              ],
+            ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 5, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                        AutoSizeText(
+                          'Name',
+                          textAlign: TextAlign.start,
+                          style: _textStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: AutoSizeText(
+                            postTitle,
+                            style: _textStyle,
+                            maxLines: 4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: AutoSizeText(
+                            postBody,
+                            style: _textStyle,
+                            maxLines: 4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
