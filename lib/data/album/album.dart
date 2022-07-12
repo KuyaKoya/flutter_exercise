@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'album.g.dart';
 
 @JsonSerializable()
-class Album implements ResponseData<Album> {
+class Album implements ResponseData {
   final String userId;
   final int id;
   final String title;

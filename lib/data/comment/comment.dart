@@ -5,7 +5,7 @@ import '../response_data.dart';
 part 'comment.g.dart';
 
 @JsonSerializable()
-class Comment implements ResponseData<Comment> {
+class Comment implements ResponseData {
   final String postId;
   final String id;
   final String name;

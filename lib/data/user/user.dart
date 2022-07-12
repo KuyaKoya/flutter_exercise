@@ -7,7 +7,7 @@ import 'company/company.dart';
 part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class User implements ResponseData<User> {
+class User implements ResponseData {
   final int id;
   final String username;
   final String email;

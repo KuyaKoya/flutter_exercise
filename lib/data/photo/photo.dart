@@ -5,7 +5,7 @@ import '../response_data.dart';
 part 'photo.g.dart';
 
 @JsonSerializable()
-class Photo implements ResponseData<Photo> {
+class Photo implements ResponseData {
   final String albumId;
   final String id;
   final String title;

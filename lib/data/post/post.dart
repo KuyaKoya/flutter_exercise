@@ -1,11 +1,10 @@
-import 'package:flutter/src/foundation/basic_types.dart';
 import 'package:flutter_exercise/data/response_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post.g.dart';
 
 @JsonSerializable()
-class Post implements ResponseData<Post> {
+class Post implements ResponseData {
   final int userId;
   final int id;
   final String title;
