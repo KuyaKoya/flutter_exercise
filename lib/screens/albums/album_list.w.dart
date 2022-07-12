@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/data/Response/post/post.dart';
+import 'package:flutter_exercise/data/Response/post/post_response_data.dart';
 import 'album_item.w.dart';
 
 class AlbumList extends StatelessWidget {
