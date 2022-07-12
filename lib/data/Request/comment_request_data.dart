@@ -16,15 +16,15 @@ class CommentRequestData extends RequestData {
   }
 
   @override
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> map =  {
-      'postId': postId,
-      'id': id,
-      'name': name,
-      'email': email,
-      'body': body
+  Map<String, String> toMap() {
+    Map<String, String> map =  {
+      'postId': postId.toString(),
+      'id': id.toString(),
+      'name': name.toString(),
+      'email': email.toString(),
+      'body': body.toString()
     };
-    map.removeWhere((key, value) => value == null);
+    map.removeWhere((key, value) => value == 'null');
     return map;
   }
 }

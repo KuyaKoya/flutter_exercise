@@ -17,15 +17,15 @@ class UserRequestData extends RequestData {
   }
 
   @override
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = {
-      'id': id,
-      'username': username,
-      'email': email,
-      'phone': phone,
-      'website': website
+  Map<String, String> toMap() {
+    Map<String, String> map = {
+      'id': id.toString(),
+      'username': username.toString(),
+      'email': email.toString(),
+      'phone': phone.toString(),
+      'website': website.toString()
     };
-    map.removeWhere((key, value) => value == null);
+    map.removeWhere((key, value) => value == 'null');
     return map;
   }
 }

@@ -7,19 +7,20 @@ class AlbumRequestData extends RequestData {
   final String? title;
 
   AlbumRequestData({this.userId, this.id, this.title,});
+
   @override
   Uri parseToURL() {
     return Uri.https(super.url, _endpoint, toMap());
   }
 
   @override
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = {
-      'userId' : userId,
-      'id': id,
-      'title' : title
+  Map<String, String> toMap() {
+    Map<String, String> map = {
+      'userId' : userId.toString(),
+      'id': id.toString(),
+      'title' : title.toString()
     };
-    map.removeWhere((key, value) => value == null);
+    map.removeWhere((key, value) => value == 'null');
     return map;
   }
 }
