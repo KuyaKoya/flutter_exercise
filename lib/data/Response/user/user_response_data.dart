@@ -4,10 +4,10 @@ import '../response_data.dart';
 import 'address/address.dart';
 import 'company/company.dart';
 
-part 'user.g.dart';
+part 'user_response_data.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class User implements ResponseData {
+class UserResponseData implements ResponseData {
   final int id;
   final String username;
   final String email;
@@ -16,7 +16,7 @@ class User implements ResponseData {
   final String website;
   final Company company;
 
-  User({
+  UserResponseData({
     required this.id,
     required this.username,
     required this.email,
@@ -30,7 +30,7 @@ class User implements ResponseData {
   Map<String, dynamic> toJson() => _$UserToJson(this);
   
   @override
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory UserResponseData.fromJson(Map<String, dynamic> json) {
     return _$UserFromJson(json);
   }
 }

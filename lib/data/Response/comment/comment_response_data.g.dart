@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'comment.dart';
+part of 'comment_response_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
+CommentResponseData _$CommentFromJson(Map<String, dynamic> json) => CommentResponseData(
       postId: json['postId'] as String,
       id: json['id'] as String,
       name: json['name'] as String,
@@ -14,7 +14,7 @@ Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
       body: json['body'] as String,
     );
 
-Map<String, dynamic> _$CommentToJson(Comment instance) => <String, dynamic>{
+Map<String, dynamic> _$CommentToJson(CommentResponseData instance) => <String, dynamic>{
       'postId': instance.postId,
       'id': instance.id,
       'name': instance.name,

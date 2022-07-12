@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/data/Response/post/post.dart';
+import 'package:flutter_exercise/data/Response/post/post_response_data.dart';
 import 'post_item.w.dart';
 
 class PostList extends StatelessWidget {
   const PostList(this.posts);
 
-  final List<Post> posts;
+  final List<PostResponseData> posts;
 
   @override
   Widget build(BuildContext context) {

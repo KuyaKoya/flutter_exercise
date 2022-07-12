@@ -3,7 +3,7 @@ import 'package:flutter_exercise/data/Request/user_request_data.dart';
 import 'package:flutter_exercise/screens/posts/post_screen.dart';
 import 'package:flutter_exercise/screens/users/user_details.w.dart';
 
-import '../../data/Response/user/user.dart';
+import '../../data/Response/user/user_response_data.dart';
 import '../../services/user_request.dart';
 import '../albums/album_screen.dart';
 
@@ -15,7 +15,7 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
 
-  late Future<List<User>> futureUser;
+  late Future<List<UserResponseData>> futureUser;
   @override
   void initState() {
     super.initState();
