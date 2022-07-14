@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
 
@@ -44,29 +45,17 @@ class _MyHomePageState extends State<MyHomePage> {
     print("isDark: $isDark");
 
     return Scaffold(
+      //  May God bless this scaffold.
       backgroundColor: isDark ? Colors.black : Colors.white,
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+      body: const PostList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           themeCubit.toggleTheme();
         },
-        tooltip: 'Increment',
+        tooltip: 'Toggle Theme',
         child: const Icon(Icons.wb_sunny_outlined),
       ), 
     );
