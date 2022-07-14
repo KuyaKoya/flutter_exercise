@@ -1,6 +1,7 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
+import 'package:flutter_exercise/presentation/states/post/post_event.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
@@ -30,34 +31,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  PostBloc get postBloc => context.read<PostBloc>();
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var themeCubit = BlocProvider.of<ThemeCubit>(context, listen: true);
     var isDark = themeCubit.isDark;
-    print("isDark: $isDark");
 
     return Scaffold(
       //  May God bless this scaffold.
-      backgroundColor: isDark ? Colors.black : Colors.white,
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const PostList(),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("The theme is currently $isDark"),
+          const Flexible(child: PostList()),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           themeCubit.toggleTheme();
         },
         tooltip: 'Toggle Theme',
         child: const Icon(Icons.wb_sunny_outlined),
-      ), 
+      ),
     );
   }
 }

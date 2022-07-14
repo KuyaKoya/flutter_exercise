@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/core/network/network.dart';
+import 'package:flutter_exercise/core/usecase.dart';
+import 'package:flutter_exercise/data/repositories/base_repository.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
+import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 import 'package:flutter_exercise/presentation/states/themes/theme_cubit.dart';
 import 'app.dart';
 
@@ -7,36 +12,35 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    MultiBlocProvider(
+    MultiRepositoryProvider(
       providers: [
-        ///
-        /// Theme Cubit
-        ///
-        BlocProvider<ThemeCubit>(
-          create: (context) => ThemeCubit(),
-        )
+        RepositoryProvider<NetworkManager>(
+          create: (context) => NetworkManager(),
+        ),
+        RepositoryProvider<JsonPlaceHolderAPI>(
+          create: (context) => JsonPlaceHolderAPI(context.read<NetworkManager>()),
+        ),
+        RepositoryProvider<BaseRepository>(
+          create: (context) => BaseRepository(context.read<JsonPlaceHolderAPI>()),
+        ),
+        RepositoryProvider<BaseUseCase>(
+          create: (context) => BaseUseCase(context.read<BaseRepository>()),
+        ),
       ],
-      child: MyApp(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<PostBloc> (
+            create: (context) => PostBloc(context.read<BaseUseCase>()),
+          ),
+          ///
+          /// Theme Cubit
+          ///
+          BlocProvider<ThemeCubit>(
+            create: (context) => ThemeCubit(),
+          )
+        ],
+        child: MyApp(),
+      ),
     ),
   );
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
 }

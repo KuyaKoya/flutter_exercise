@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/domain/entities/post_entity.dart';
 
 class PostItem extends StatelessWidget {
-  const PostItem({Key? key}) : super(key: key);
+  const PostItem(this.post, {Key? key}) : super(key: key);
+  final PostEntity post;
 
   static const TextStyle _textStyle =
       TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
@@ -33,9 +35,9 @@ class PostItem extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         AutoSizeText(
-                          'Name',
+                          post.userName,
                           textAlign: TextAlign.start,
                           style: _textStyle,
                         ),
@@ -46,10 +48,10 @@ class PostItem extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      children: const [
+                      children: [
                         Expanded(
                           child: AutoSizeText(
-                            'title',
+                            post.title,
                             style: _textStyle,
                             maxLines: 4,
                           ),
@@ -61,10 +63,10 @@ class PostItem extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      children: const [
+                      children: [
                         Expanded(
                           child: AutoSizeText(
-                            'body',
+                            post.body,
                             style: _textStyle,
                             maxLines: 4,
                           ),

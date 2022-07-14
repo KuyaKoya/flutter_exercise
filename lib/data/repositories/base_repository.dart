@@ -6,7 +6,7 @@ abstract class IBaseRepository {
 }
 
 class BaseRepository extends IBaseRepository {
-  BaseRepository({required this.jsonPlaceHolderAPI});
+  BaseRepository(this.jsonPlaceHolderAPI);
 
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
 

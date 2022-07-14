@@ -6,16 +6,16 @@ import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/post_requ
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/user_request.dart';
 
 class JsonPlaceHolderAPI {
-  JsonPlaceHolderAPI();
+  JsonPlaceHolderAPI(this.networkManager);
 
-  static const String baseURL = "https://jsonplaceholder.typicode.com";
+  final NetworkManager networkManager;
 
   PostRequest get postRequest {
-    return PostRequest(baseURL);
+    return PostRequest(networkManager);
    
   }
 
   UserRequest get getUsers {
-    return UserRequest(baseURL);
+    return UserRequest(networkManager);
   }
 }

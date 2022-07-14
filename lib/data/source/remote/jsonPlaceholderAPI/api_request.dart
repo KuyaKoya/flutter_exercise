@@ -2,19 +2,20 @@ import 'package:dio/dio.dart';
 import 'package:flutter_exercise/core/network/network.dart';
 
 class ApiRequest {
-  ApiRequest(this.baseURL);
+  ApiRequest(this.networkManager);
 
-  final NetworkManager networkManager = NetworkManager();
+  final NetworkManager networkManager;
 
-  final String baseURL;
+  Future<Response> request(
+    RequestMethod requestMethod, 
+    String endpoint,
+    Map<String, dynamic> queryParams, 
+    String baseURL) async {
 
-  Future<Response> request(RequestMethod requestMethod, String endpoint, Map<String, dynamic> queryParams) async {
-    final response = await networkManager.request(
-      requestMethod, 
-      baseURL + endpoint, 
-      queryParameters: queryParams);
+    Response<String> response = await networkManager.request(
+        requestMethod, baseURL + endpoint,
+        queryParameters: queryParams);
 
     return response;
   }
-
 }
