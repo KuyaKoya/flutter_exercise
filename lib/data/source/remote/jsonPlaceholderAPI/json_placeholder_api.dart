@@ -1,19 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_exercise/core/network/network.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/post/post.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/user/user.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/post_request.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/user_request.dart';
 
 class JsonPlaceHolderAPI {
   JsonPlaceHolderAPI();
 
-  final NetworkManager networkManager = NetworkManager();
-
   static const String baseURL = "https://jsonplaceholder.typicode.com";
 
-  Future<Response> request(RequestMethod requestMethod, String endpoint, Map<String, dynamic> queryParams) async {
-    final response = await networkManager.request(
-      requestMethod, 
-      baseURL + endpoint, 
-      queryParameters: queryParams);
+  PostRequest get postRequest {
+    return PostRequest(baseURL);
+   
+  }
 
-    return response;
+  UserRequest get getUsers {
+    return UserRequest(baseURL);
   }
 }

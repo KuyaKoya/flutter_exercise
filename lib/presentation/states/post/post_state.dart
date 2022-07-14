@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/domain/entities/post.dart';
+import 'package:flutter_exercise/domain/entities/post_entity.dart';
 
 enum PostStateStatus {
   initial,
@@ -12,7 +12,7 @@ enum PostStateStatus {
 
 class PostState {
   final PostStateStatus status;
-  final List<Post> posts;
+  final List<PostEntity> posts;
   final int selectedPostId;
   final int page;
   final Exception? error;
@@ -35,7 +35,7 @@ class PostState {
     );
   }
 
-  PostState asLoadSuccess(List<Post> posts, {bool canLoadMore = true}) {
+  PostState asLoadSuccess(List<PostEntity> posts, {bool canLoadMore = true}) {
     return copyWith(
       status: PostStateStatus.loadSuccess,
       posts: posts,
@@ -55,7 +55,7 @@ class PostState {
     return copyWith(status: PostStateStatus.loadingMore);
   }
 
-  PostState asLoadMoreSuccess(List<Post> newPosts, {bool canLoadMore = true}) {
+  PostState asLoadMoreSuccess(List<PostEntity> newPosts, {bool canLoadMore = true}) {
     return copyWith(
       status: PostStateStatus.loadMoreSuccess,
       posts: [...posts, ...newPosts],
@@ -73,7 +73,7 @@ class PostState {
 
   PostState copyWith({
     PostStateStatus? status,
-    List<Post>? posts,
+    List<PostEntity>? posts,
     int? selectedPostId,
     int? page,
     bool? canLoadMore,

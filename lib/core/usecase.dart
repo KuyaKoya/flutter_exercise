@@ -1,15 +1,12 @@
-abstract class BaseUseCase<T> {
-  const BaseUseCase();
+import 'package:flutter_exercise/data/repositories/base_repository.dart';
+
+abstract class IBaseUseCase {
+  abstract final BaseRepository baseRepository;
 }
 
-abstract class UseCase<T, P> extends BaseUseCase<T> {
-  const UseCase() : super();
-
-  Future<T> call(P params);
-}
-
-abstract class NoParamsUseCase<T> extends BaseUseCase<T> {
-  const NoParamsUseCase() : super();
-
-  Future<T> call();
+class BaseUseCase extends IBaseUseCase {
+  @override
+  final BaseRepository baseRepository;
+  
+  BaseUseCase({required this.baseRepository});
 }
