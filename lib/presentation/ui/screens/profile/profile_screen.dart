@@ -30,8 +30,7 @@ class ProfileScreen extends StatelessWidget {
                       minRadius: 60.0,
                       child: CircleAvatar(
                         radius: 55.0,
-                        backgroundImage: NetworkImage(
-                            'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'),
+                        backgroundImage: NetworkImage('https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png'),
                       ),
                     ),
                   ],
