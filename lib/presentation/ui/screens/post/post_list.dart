@@ -17,6 +17,7 @@ class PostList extends StatefulWidget {
 }
 
 class _PostListState extends State<PostList> {
+  // May God bless this code
   PostBloc get postBloc => context.read<PostBloc>();
    @override
   void initState() {
