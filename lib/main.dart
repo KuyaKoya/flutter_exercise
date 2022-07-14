@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flux/flutter_flux.dart';
-import 'presentation/stores.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/post_request.dart';
 
 void main() {
+  PostRequest().getPosts();
   runApp(const MyApp());
 }
 
@@ -30,67 +30,14 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with StoreWatcherMixin<MyHomePage> {
-  late PostStore store;
-
+class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    store = listenToStore(postStoreToken) as PostStore;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              loadPostsAction.call();
-            },
-            child: const Text('Get Post'),
-          ),
-        ],
-      ),
-      body: ListView(
-        children: store.posts.map((post) => PostWidget(post)).toList(),
-      ),
-    );
-  }
-}
-
-class PostWidget extends StatelessWidget {
-  const PostWidget(this.post);
-  final Post post;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        border: Border.all(width: 10.0),
-      ),
-      child: Card(
-        elevation: 10.0,
-        color: Colors.lightBlue,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: ListTile(
-                title: Text(post.postTitle),
-                leading: const CircleAvatar(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.amber,
-                  child: Icon(Icons.person),
-                ),
-                subtitle: Text(post.postBody),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }

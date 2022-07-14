@@ -11,8 +11,7 @@ class Logging extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     debugPrint(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
-    );
+        'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     return super.onResponse(response, handler);
   }
 
