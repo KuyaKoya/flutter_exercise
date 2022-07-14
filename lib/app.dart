@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
-import 'package:flutter_exercise/presentation/states/post/post_event.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/profile/profile_screen.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
 
@@ -13,10 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ProfileScreen(),
     );
   }
 }

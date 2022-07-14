@@ -32,14 +32,11 @@ void main() async {
           BlocProvider<PostBloc> (
             create: (context) => PostBloc(context.read<BaseUseCase>()),
           ),
-          ///
-          /// Theme Cubit
-          ///
           BlocProvider<ThemeCubit>(
             create: (context) => ThemeCubit(),
           )
         ],
-        child: MyApp(),
+        child: const MyApp(),
       ),
     ),
   );
