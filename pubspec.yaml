@@ -37,6 +37,9 @@ dependencies:
   http: ^0.13.4
   auto_size_text: ^3.0.0
   flutter_bloc: ^8.0.1
+  intl: ^0.17.0
+  bloc: ^8.0.3
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_test:
