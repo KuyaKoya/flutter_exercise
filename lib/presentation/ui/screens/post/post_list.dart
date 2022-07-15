@@ -25,7 +25,7 @@ class _PostListState extends State<PostList> {
     super.initState();
 
     scheduleMicrotask(() {
-      context.read<PostBloc>().add(PostLoadStarted(loadAll: true));
+      context.read<PostBloc>().add(const PostLoadStarted(loadAll: true));
     });
   }
 

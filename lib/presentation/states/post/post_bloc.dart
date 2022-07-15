@@ -13,7 +13,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     return _baseUseCase.postUseCaseImpl;
   }
 
-  PostBloc(this._baseUseCase) : super(PostState.initial()) {
+  PostBloc(this._baseUseCase) : super(const PostState.initial()) {
     on<PostLoadStarted>(
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),

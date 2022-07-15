@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
-part 'comment_event.dart';
-part 'comment_state.dart';
+import 'comment_event.dart';
+import 'comment_state.dart';
 
 class CommentBloc extends Bloc<CommentEvent, CommentState> {
-  CommentBloc() : super(CommentInitial()) {
+  CommentBloc() : super(const CommentState.initial()) {
     on<CommentEvent>((event, emit) {
       // TODO: implement event handler
     });

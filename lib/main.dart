@@ -7,6 +7,7 @@ import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_plac
 import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 import 'package:flutter_exercise/presentation/states/themes/theme_cubit.dart';
+import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
 import 'app.dart';
 
 void main() async {
@@ -35,13 +36,9 @@ void main() async {
           BlocProvider<PostBloc>(
             create: (context) => PostBloc(context.read<BaseUseCase>()),
           ),
-          BlocProvider<AlbumBloc>(
-            create: (context) => AlbumBloc(context.read<BaseUseCase>()),
+          BlocProvider<UserBloc> (
+            create: (context) => UserBloc(context.read<BaseUseCase>()),
           ),
-
-          ///
-          /// Theme Cubit
-          ///
           BlocProvider<ThemeCubit>(
             create: (context) => ThemeCubit(),
           )

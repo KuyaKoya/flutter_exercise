@@ -11,13 +11,11 @@ abstract class ICommentRepository {
 
 class CommentRepository extends ICommentRepository {
   CommentRepository({required this.jsonPlaceHolderAPI});
-
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
   @override
   Future<List<CommentEntity>> getAllComments() async {
-    final commentList =
-        await jsonPlaceHolderAPI.createCommentRequest().getCommentList();
+    final commentList = await jsonPlaceHolderAPI.createCommentRequest().getCommentList();
     return toCommentEntity(commentList);
   }
 
