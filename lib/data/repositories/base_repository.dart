@@ -12,9 +12,16 @@ class BaseRepository extends IBaseRepository {
 
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
+  late final PostRepository _postRepository =
+      PostRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+
+  late final CommentRepository _commentRepository =
+      CommentRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+      
   @override
-  PostRepository get postRepository => PostRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
-  
+  PostRepository get postRepository => _postRepository;
+
   @override
-  CommentRepository get commentRepository => CommentRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+  CommentRepository get commentRepository =>
+      _commentRepository;
 }
