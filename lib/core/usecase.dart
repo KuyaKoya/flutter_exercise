@@ -1,5 +1,6 @@
 import 'package:flutter_exercise/data/repositories/base_repository.dart';
 import 'package:flutter_exercise/domain/usecases/comment_usecase.dart';
+import 'package:flutter_exercise/domain/usecases/album_usecase.dart';
 
 import '../domain/usecases/post_usecase.dart';
 
@@ -7,6 +8,7 @@ abstract class IBaseUseCase {
   abstract final BaseRepository baseRepository;
   PostUseCaseImpl get postUseCaseImpl;
   CommentUseCaseImpl get commentUseCaseImpl;
+  AlbumUseCaseImpl get albumUseCaseImpl;
 }
 
 class BaseUseCase extends IBaseUseCase {
@@ -20,4 +22,9 @@ class BaseUseCase extends IBaseUseCase {
  
   @override
   CommentUseCaseImpl get commentUseCaseImpl => CommentUseCaseImpl(baseRepository);
+
+  @override
+  AlbumUseCaseImpl get albumUseCaseImpl {
+    return AlbumUseCaseImpl(baseRepository);
+  }
 }

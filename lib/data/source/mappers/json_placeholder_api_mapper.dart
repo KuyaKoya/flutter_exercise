@@ -1,9 +1,10 @@
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/album/album.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/comment/comment.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/post/post.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/user/user.dart';
+import 'package:flutter_exercise/domain/entities/album_entity.dart';
 import 'package:flutter_exercise/domain/entities/comment_entity.dart';
-
-import '../../../domain/entities/post_entity.dart';
+import 'package:flutter_exercise/domain/entities/post_entity.dart';
 
 List<PostEntity> toPostEntityList(List<User> users, List<Post> posts) {
   List<PostEntity> postList = [];
@@ -30,4 +31,13 @@ List<CommentEntity> toCommentEntity(List<Comment> comments) {
         body: comment.body));
   }
   return commentList;
+}
+
+List<AlbumEntity> toAlbumEntityList(List<Album> albums) {
+  List<AlbumEntity> albumList = [];
+  for (var album in albums) {
+    albumList.add(
+        AlbumEntity(userId: album.userId, id: album.id, title: album.title));
+  }
+  return albumList;
 }
