@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/presentation/ui/screens/album/album_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/comment/comment_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/photo/photo_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/profile/profile_screen.dart';
+import 'package:flutter_exercise/presentation/ui/screens/splash/splash.dart';
+import 'package:flutter_exercise/utils/fade_page_route.dart';
 
-enum Routes { splash, home, pokedex, pokemonInfo, typeEffects, items }
+enum Routes { splash, home, posts, comments, users, albums, photos }
 
 class _Paths {
   static const String splash = '/';
   static const String home = '/home';
+  static const String posts = '/posts';
+  static const String comments = '/posts/comments';
+  static const String users = '/users';
+  static const String albums = '/users/albums';
+  static const String photos = '/albums/photos';
 
   static const Map<Routes, String> _pathMap = {
     Routes.splash: _Paths.splash,
     Routes.home: _Paths.home,
+    Routes.posts: _Paths.posts,
+    Routes.comments: _Paths.comments,
+    Routes.users: _Paths.users,
+    Routes.albums: _Paths.albums,
+    Routes.photos: _Paths.photos
   };
 
   static String of(Routes route) => _pathMap[route] ?? splash;
@@ -16,6 +33,27 @@ class _Paths {
 
 class AppNavigator {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
+  static Route onGenerateRoute(RouteSettings settings) {
+    debugPrint("generate route: $settings");
+    switch (settings.name) {
+      case _Paths.splash:
+        return FadeRoute(page: const SplashScreen());
+      case _Paths.comments:
+        return FadeRoute(page: const CommentList());
+      case _Paths.users:
+        return FadeRoute(page: const ProfileScreen());
+      case _Paths.albums:
+        return FadeRoute(page: const AlbumList());
+      case _Paths.photos:
+        return FadeRoute(page: const PhotoList());
+
+      case _Paths.posts:
+      case _Paths.home:
+      default:
+        return FadeRoute(page: const PostList());
+    }
+  }
 
   static Future? push<T>(Routes route, [T? arguments]) =>
       state?.pushNamed(_Paths.of(route), arguments: arguments);

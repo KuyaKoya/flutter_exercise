@@ -1,14 +1,20 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/domain/entities/post_entity.dart';
+import 'package:flutter_exercise/routes.dart';
 
-class PostItem extends StatelessWidget {
+class PostItem extends StatefulWidget {
   const PostItem(this.post, {Key? key}) : super(key: key);
   final PostEntity post;
 
   static const TextStyle _textStyle =
       TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
 
+  @override
+  State<PostItem> createState() => _PostItemState();
+}
+
+class _PostItemState extends State<PostItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,25 +35,29 @@ class PostItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AutoSizeText(
-                      post.userName,
+                  InkWell(
+                    onTap: () async {
+                      _onUserNamePressed(widget.post);
+                    },
+                    child: AutoSizeText(
+                      widget.post.userName,
                       textAlign: TextAlign.start,
-                      style: _textStyle,
+                      style: PostItem._textStyle,
                     ),
+                  ),
                   AutoSizeText(
-                            post.title,
-                            style: _textStyle,
-                            maxLines: 4,
-                    ),
+                    widget.post.title,
+                    style: PostItem._textStyle,
+                    maxLines: 4,
+                  ),
                   AutoSizeText(
-                      post.body,
-                      style: _textStyle,
-                      maxLines: 4,
-                    ),
+                    widget.post.body,
+                    style: PostItem._textStyle,
+                    maxLines: 4,
+                  ),
                   const ElevatedButton(
-                    onPressed: _onCommentButtonPressed, 
-                    child: Text("Comment")
-                    )
+                      onPressed: _onCommentButtonPressed,
+                      child: Text("Comment"))
                 ],
               ),
             ),
@@ -59,5 +69,10 @@ class PostItem extends StatelessWidget {
 }
 
 void _onCommentButtonPressed() {
-  
+  AppNavigator.push(Routes.comments);
+}
+
+void _onUserNamePressed(PostEntity post) {
+  debugPrint("pressed");
+  AppNavigator.push(Routes.users, post);
 }
