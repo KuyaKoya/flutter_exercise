@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
-import 'package:flutter_exercise/presentation/ui/screens/album/album_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
 
@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fleeter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Fleeter Demo Home Page'),
     );
   }
 }
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text("The theme is currently $isDark"),
-          const Flexible(child: AlbumList()),
+          const Flexible(child: PostList()),
         ],
       ),
       floatingActionButton: FloatingActionButton(

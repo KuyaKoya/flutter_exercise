@@ -19,4 +19,3 @@ class AlbumUseCaseImpl extends IAlbumUseCase {
     return albumRepository.getAllAlbums();
   }
 }
-A
