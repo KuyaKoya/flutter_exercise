@@ -9,12 +9,13 @@ abstract class IPostRepository {
 class PostRepository extends IPostRepository {
   PostRepository({required this.jsonPlaceHolderAPI});
 
+  
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
   @override
   Future<List<PostEntity>> getAllPosts() async {
     final postList = await jsonPlaceHolderAPI.postRequest.getPostList();
-    final userList = await jsonPlaceHolderAPI.getUsers.getUserList();
+    final userList = await jsonPlaceHolderAPI.userRequest.getUserList();
     return toPostEntityList(userList, postList);
   }
 }
