@@ -4,7 +4,7 @@ part 'album.g.dart';
 
 @JsonSerializable()
 class Album {
-  final String userId;
+  final int userId;
   final int id;
   final String title;
 
@@ -15,7 +15,7 @@ class Album {
   });
   @override
   Map<String, dynamic> toJson() => _$AlbumToJson(this);
-  
+
   @override
   factory Album.fromJson(Map<String, dynamic> json) {
     return _$AlbumFromJson(json);

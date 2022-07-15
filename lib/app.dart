@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
-import 'package:flutter_exercise/presentation/states/post/post_event.dart';
-import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
+import 'package:flutter_exercise/presentation/ui/screens/album/album_list.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
 
@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   PostBloc get postBloc => context.read<PostBloc>();
+  AlbumBloc get albumBloc => context.read<AlbumBloc>();
   @override
   void initState() {
     super.initState();
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text("The theme is currently $isDark"),
-          const Flexible(child: PostList()),
+          const Flexible(child: AlbumList()),
         ],
       ),
       floatingActionButton: FloatingActionButton(
