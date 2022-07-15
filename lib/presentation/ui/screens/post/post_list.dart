@@ -6,6 +6,7 @@ import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 
 import 'package:flutter_exercise/presentation/ui/screens/post/post_item.dart';
 
+import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
 import '../../../states/post/post_event.dart';
 import '../../../states/post/post_state.dart';
@@ -19,7 +20,7 @@ class PostList extends StatefulWidget {
 class _PostListState extends State<PostList> {
   // May God bless this code
   PostBloc get postBloc => context.read<PostBloc>();
-   @override
+  @override
   void initState() {
     super.initState();
 
@@ -38,12 +39,7 @@ class _PostListState extends State<PostList> {
         return Column(
           children: [
             Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  for (var post in postBloc.state.posts) PostItem(post),
-                ],
-              ),
+              child: createList(postBloc.state.posts)
             ),
           ],
         );
@@ -52,3 +48,10 @@ class _PostListState extends State<PostList> {
   }
 }
 
+Widget createList(List<PostEntity> posts) {
+  return ListView.builder(
+      itemCount: posts.length,
+      itemBuilder: (context, index) {
+        return PostItem(posts[index]);
+      });
+}

@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/data/source/mappers/json_placeholder_api.dart';
+import 'package:flutter_exercise/data/source/mappers/json_placeholder_api_mapper.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
 
 import '../../domain/entities/comment_entity.dart';

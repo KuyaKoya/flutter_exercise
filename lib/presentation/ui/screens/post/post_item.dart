@@ -29,51 +29,25 @@ class PostItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 5, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          post.userName,
-                          textAlign: TextAlign.start,
-                          style: _textStyle,
-                        ),
-                      ],
+                  AutoSizeText(
+                      post.userName,
+                      textAlign: TextAlign.start,
+                      style: _textStyle,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: AutoSizeText(
+                  AutoSizeText(
                             post.title,
                             style: _textStyle,
                             maxLines: 4,
-                          ),
-                        ),
-                      ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: AutoSizeText(
-                            post.body,
-                            style: _textStyle,
-                            maxLines: 4,
-                          ),
-                        ),
-                      ],
+                  AutoSizeText(
+                      post.body,
+                      style: _textStyle,
+                      maxLines: 4,
                     ),
-                  ),
+                  const ElevatedButton(
+                    onPressed: _onCommentButtonPressed, 
+                    child: Text("Comment")
+                    )
                 ],
               ),
             ),
@@ -82,4 +56,8 @@ class PostItem extends StatelessWidget {
       ),
     );
   }
+}
+
+void _onCommentButtonPressed() {
+  
 }
