@@ -1,4 +1,17 @@
-part of 'comment_bloc.dart';
+abstract class CommentEvent {
+  const CommentEvent();
+}
 
-@immutable
-abstract class CommentEvent {}
+class CommentLoadStarted extends CommentEvent {
+  final bool loadAll;
+
+  const CommentLoadStarted({this.loadAll = false});
+}
+
+class CommentLoadMoreStarted extends CommentEvent {}
+
+class CommentSelectChanged extends CommentEvent {
+  final String commentId;
+
+  const CommentSelectChanged({required this.commentId});
+}

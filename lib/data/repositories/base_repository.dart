@@ -22,6 +22,5 @@ class BaseRepository extends IBaseRepository {
   PostRepository get postRepository => _postRepository;
 
   @override
-  CommentRepository get commentRepository =>
-      _commentRepository;
+  CommentRepository get commentRepository => _commentRepository;
 }

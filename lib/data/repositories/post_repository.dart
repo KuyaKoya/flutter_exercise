@@ -1,6 +1,5 @@
 import 'package:flutter_exercise/data/source/mappers/json_placeholder_api_mapper.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/queryparams/post_query_params.dart';
 import 'package:flutter_exercise/domain/entities/post_entity.dart';
 
 abstract class IPostRepository {
