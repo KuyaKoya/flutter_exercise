@@ -7,7 +7,7 @@ part of 'album.dart';
 // **************************************************************************
 
 Album _$AlbumFromJson(Map<String, dynamic> json) => Album(
-      userId: json['userId'] as String,
+      userId: json['userId'] as int,
       id: json['id'] as int,
       title: json['title'] as String,
     );

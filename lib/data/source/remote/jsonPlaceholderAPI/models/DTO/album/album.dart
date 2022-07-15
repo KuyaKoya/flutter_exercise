@@ -4,7 +4,7 @@ part 'album.g.dart';
 
 @JsonSerializable()
 class Album {
-  final String userId;
+  final int userId;
   final int id;
   final String title;
 

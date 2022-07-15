@@ -3,20 +3,26 @@ import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/comment_r
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/post_request.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/user_request.dart';
 
+import 'models/queryparams/comment_query_params.dart';
+import 'models/queryparams/post_query_params.dart';
+import 'models/queryparams/user_query_params.dart';
+
 class JsonPlaceHolderAPI {
   JsonPlaceHolderAPI(this.networkManager);
 
   final NetworkManager networkManager;
 
-  PostRequest get postRequest {
-    return PostRequest(networkManager);
+  CommentRequest createCommentRequest([CommentQueryParameters? queryParams]) {
+    return CommentRequest(
+        networkManager, queryParams ?? CommentQueryParameters());
   }
 
-  UserRequest get userRequest {
-    return UserRequest(networkManager);
+  PostRequest createPostRequest([PostQueryParameters? queryParams]) {
+    return PostRequest(networkManager, queryParams ?? PostQueryParameters());
   }
 
-  CommentRequest get commentRequest {
-    return CommentRequest(networkManager);
+  UserRequest createUserRequest([UserQueryParameters? queryParameters]) {
+    return UserRequest(
+        networkManager, queryParameters ?? UserQueryParameters());
   }
 }
