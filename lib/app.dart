@@ -17,15 +17,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ProfileScreen(),
+      home: const ProfileScreen(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -46,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       //  May God bless this scaffold.
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text('Flutter Demo App'),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,

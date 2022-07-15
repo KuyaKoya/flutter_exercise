@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/data/source/mappers/json_placeholder_api.dart';
+import 'package:flutter_exercise/data/source/mappers/json_placeholder_api_mapper.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
 import 'package:flutter_exercise/domain/entities/post_entity.dart';
 import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
@@ -14,7 +14,7 @@ class UserRepository extends IUserRepository {
 
   @override
   Future<List<UserEntity>> getAllUsers() async {
-    final userList = await jsonPlaceHolderAPI.getUsers.getUserList();
-    return JsonPlaceHolderApiMapper().toUserEntityList(userList);
+    final userList = await jsonPlaceHolderAPI.userRequest.getUserList();
+    return toUserEntityList(userList);
   }
 }

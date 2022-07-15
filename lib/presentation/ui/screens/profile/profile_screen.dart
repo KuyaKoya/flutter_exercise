@@ -1,11 +1,42 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfileScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
+import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
+import 'package:flutter_exercise/presentation/states/post/post_event.dart';
+import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
+import 'package:flutter_exercise/presentation/states/user/user_event.dart';
+import 'package:flutter_exercise/presentation/states/user/user_state.dart';
+
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  UserBloc get userBloc => context.read<UserBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    scheduleMicrotask(() {
+      context.read<UserBloc>().add(const UserLoadStarted(loadAll: true));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (_, state) {
+        if (state.error != null) {
+          return Text(state.error.toString());
+        }
+
+        return Scaffold(
       body: ListView(
         children: <Widget>[
           Container(
@@ -30,7 +61,8 @@ class ProfileScreen extends StatelessWidget {
                       minRadius: 60.0,
                       child: CircleAvatar(
                         radius: 55.0,
-                        backgroundImage: NetworkImage('https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png'),
+                        backgroundImage: NetworkImage(
+                            'https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png'),
                       ),
                     ),
                   ],
@@ -69,6 +101,8 @@ class ProfileScreen extends StatelessWidget {
           )
         ],
       ),
+    );
+      },
     );
   }
 }

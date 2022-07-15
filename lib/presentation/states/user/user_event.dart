@@ -1,4 +1,15 @@
-part of 'user_bloc.dart';
+abstract class UserEvent {
+  const UserEvent();
+}
 
-@immutable
-abstract class UserEvent {}
+class UserLoadStarted extends UserEvent {
+  final bool loadAll;
+
+  const UserLoadStarted({this.loadAll = false});
+}
+
+class UserSelectChanged extends UserEvent {
+  final String userId;
+
+  const UserSelectChanged({required this.userId});
+}

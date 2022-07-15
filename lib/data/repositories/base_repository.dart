@@ -20,13 +20,13 @@ class BaseRepository extends IBaseRepository {
 
   late final CommentRepository _commentRepository =
       CommentRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
-
-  late final PostRepository _postRepository =
+  
+  late final UserRepository _userRepository =
       UserRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
 
   PostRepository get postRepository => _postRepository;
 
   CommentRepository get commentRepository => _commentRepository;
 
-  UserRepository get userRepository => _postRepository;
+  UserRepository get userRepository => _userRepository;
 }
