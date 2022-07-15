@@ -1,3 +1,4 @@
+import 'package:flutter_exercise/data/repositories/comment_repository.dart';
 import 'package:flutter_exercise/data/repositories/post_repository.dart';
 import 'package:flutter_exercise/data/repositories/user_repository.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/us
 abstract class IBaseRepository {
   PostRepository get postRepository;
   UserRepository get userRepository;
+  CommentRepository get commentRepository;
 }
 
 class BaseRepository extends IBaseRepository {
@@ -13,13 +15,18 @@ class BaseRepository extends IBaseRepository {
 
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
-  @override
-  PostRepository get postRepository {
-    return PostRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
-  }
+  late final PostRepository _postRepository =
+      PostRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
 
-  @override
-  UserRepository get userRepository {
-    return UserRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
-  }
+  late final CommentRepository _commentRepository =
+      CommentRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+
+  late final PostRepository _postRepository =
+      UserRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+
+  PostRepository get postRepository => _postRepository;
+
+  CommentRepository get commentRepository => _commentRepository;
+
+  UserRepository get userRepository => _postRepository;
 }

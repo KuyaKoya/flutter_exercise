@@ -1,37 +1,37 @@
 import 'dart:convert';
 
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/api_request.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/user/user.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/comment/comment.dart';
 
 import '../../../../core/constants.dart' as constants;
 import '../../../../core/network/network.dart';
 
-class UserRequest extends ApiRequest {
-  final String _endpoint = "/users";
-  final int? id;
-  final String? username;
+class CommentRequest extends ApiRequest {
+  final String _endpoint = '/comments';
+  final String? postId;
+  final String? id;
+  final String? name;
   final String? email;
-  final String? phone;
-  final String? website;
+  final String? body;
 
-  UserRequest(networkManager,
-      {this.id, this.username, this.email, this.phone, this.website})
+  CommentRequest(networkManager,
+      {this.postId, this.id, this.name, this.email, this.body})
       : super(networkManager);
 
-  Future<List<User>> getUserList() async {
+  Future<List<Comment>> getCommentList() async {
     final response = await super.request(RequestMethod.get, _endpoint, toMap(),
         constants.JSON_PLACEHOLDER_API_URL);
     final parsed = jsonDecode(response.data).cast<Map<String, dynamic>>();
-    return List<User>.from(parsed.map((json) => User.fromJson(json)).toList());
+    return List<Comment>.from(parsed.map((json) => Comment.fromJson(json)).toList());
   }
 
   Map<String, String> toMap() {
-    Map<String, String> map = {
+    Map<String, String> map =  {
+      'postId': postId.toString(),
       'id': id.toString(),
-      'username': username.toString(),
+      'name': name.toString(),
       'email': email.toString(),
-      'phone': phone.toString(),
-      'website': website.toString()
+      'body': body.toString()
     };
     map.removeWhere((key, value) => value == 'null');
     return map;

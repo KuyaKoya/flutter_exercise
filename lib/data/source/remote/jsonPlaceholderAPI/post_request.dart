@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_exercise/core/network/network.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/api_request.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/post/post.dart';
