@@ -15,7 +15,7 @@ class CommentRepository extends ICommentRepository {
 
   @override
   Future<List<CommentEntity>> getAllComments() async {
-    final commentList = await jsonPlaceHolderAPI.commentRequest.getCommentList();
+    final commentList = await jsonPlaceHolderAPI.createCommentRequest().getCommentList();
     return toCommentEntity(commentList);
   }
 }
