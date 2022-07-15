@@ -1,6 +1,6 @@
 class AlbumQueryParams {
   final int? id;
-  final String? userId;
+  final int? userId;
   final String? title;
 
   Map<String, String> toMap() {

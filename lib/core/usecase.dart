@@ -18,12 +18,13 @@ class BaseUseCase extends IBaseUseCase {
   final BaseRepository baseRepository;
 
   BaseUseCase(this.baseRepository);
-  
+
   @override
   PostUseCaseImpl get postUseCaseImpl => PostUseCaseImpl(baseRepository);
- 
+
   @override
-  CommentUseCaseImpl get commentUseCaseImpl => CommentUseCaseImpl(baseRepository);
+  CommentUseCaseImpl get commentUseCaseImpl =>
+      CommentUseCaseImpl(baseRepository);
 
   @override
   AlbumUseCaseImpl get albumUseCaseImpl {

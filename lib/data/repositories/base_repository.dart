@@ -1,10 +1,8 @@
 import 'package:flutter_exercise/data/repositories/album_repository.dart';
 import 'package:flutter_exercise/data/repositories/comment_repository.dart';
-import 'package:flutter_exercise/data/repositories/comment_repository.dart';
 import 'package:flutter_exercise/data/repositories/post_repository.dart';
 import 'package:flutter_exercise/data/repositories/user_repository.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/post/post.dart';
 
 abstract class IBaseRepository {
   PostRepository get postRepository;
