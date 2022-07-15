@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/profile/profile_screen.dart';
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fleeter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -31,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   PostBloc get postBloc => context.read<PostBloc>();
+  AlbumBloc get albumBloc => context.read<AlbumBloc>();
   @override
   void initState() {
     super.initState();
@@ -44,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       //  May God bless this scaffold.
       appBar: AppBar(
-        title: const Text('Flutter Demo App'),
+        title: const Text('Fleeter Demo App'),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,

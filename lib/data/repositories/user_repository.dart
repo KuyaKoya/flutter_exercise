@@ -14,7 +14,7 @@ class UserRepository extends IUserRepository {
 
   @override
   Future<List<UserEntity>> getAllUsers() async {
-    final userList = await jsonPlaceHolderAPI.userRequest.getUserList();
+    final userList = await jsonPlaceHolderAPI.createUserRequest().getUserList();
     return toUserEntityList(userList);
   }
 }
