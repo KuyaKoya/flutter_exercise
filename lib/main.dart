@@ -39,6 +39,9 @@ void main() async {
           BlocProvider<UserBloc> (
             create: (context) => UserBloc(context.read<BaseUseCase>()),
           ),
+          BlocProvider<AlbumBloc> (
+            create: (context) => AlbumBloc(context.read<BaseUseCase>()),
+          ),
           BlocProvider<ThemeCubit>(
             create: (context) => ThemeCubit(),
           )
