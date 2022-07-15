@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
-import 'package:flutter_exercise/presentation/states/post/post_event.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fleeter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Fleeter Demo Home Page'),
     );
   }
 }
@@ -32,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   PostBloc get postBloc => context.read<PostBloc>();
+  AlbumBloc get albumBloc => context.read<AlbumBloc>();
   @override
   void initState() {
     super.initState();

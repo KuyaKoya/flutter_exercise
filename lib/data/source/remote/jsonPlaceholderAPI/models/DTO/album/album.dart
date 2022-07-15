@@ -15,7 +15,7 @@ class Album {
   });
   @override
   Map<String, dynamic> toJson() => _$AlbumToJson(this);
-  
+
   @override
   factory Album.fromJson(Map<String, dynamic> json) {
     return _$AlbumFromJson(json);

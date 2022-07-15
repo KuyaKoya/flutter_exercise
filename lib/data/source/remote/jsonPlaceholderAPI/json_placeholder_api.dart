@@ -1,5 +1,7 @@
 import 'package:flutter_exercise/core/network/network.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/album_request.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/comment_request.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/queryparams/album_query_params.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/post_request.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/user_request.dart';
 
@@ -24,5 +26,9 @@ class JsonPlaceHolderAPI {
   UserRequest createUserRequest([UserQueryParameters? queryParameters]) {
     return UserRequest(
         networkManager, queryParameters ?? UserQueryParameters());
+  }
+
+  AlbumRequest createAlbumRequest([AlbumQueryParams? queryParameters]) {
+    return AlbumRequest(networkManager, queryParameters ?? AlbumQueryParams());
   }
 }
