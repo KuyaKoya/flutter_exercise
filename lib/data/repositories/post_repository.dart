@@ -15,6 +15,6 @@ class PostRepository extends IPostRepository {
   Future<List<PostEntity>> getAllPosts() async {
     final postList = await jsonPlaceHolderAPI.postRequest.getPostList();
     final userList = await jsonPlaceHolderAPI.getUsers.getUserList();
-    return JsonPlaceHolderApiMapper().toPostEntityList(userList, postList);
+    return toPostEntityList(userList, postList);
   }
 }
