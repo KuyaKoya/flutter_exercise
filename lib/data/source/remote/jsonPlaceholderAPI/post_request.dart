@@ -14,8 +14,8 @@ class PostRequest extends ApiRequest {
   PostRequest(networkManager, this.queryParams) : super(networkManager);
 
   Future<List<Post>> getPostList() async {
-    final response = await super.request(RequestMethod.get, _endpoint, queryParams.toMap(),
-        constants.JSON_PLACEHOLDER_API_URL);
+    final response = await super.request(RequestMethod.get, _endpoint,
+        queryParams.toMap(), constants.JSON_PLACEHOLDER_API_URL);
     final parsed = jsonDecode(response.data).cast<Map<String, dynamic>>();
     return List<Post>.from(parsed.map((json) => Post.fromJson(json)).toList());
   }

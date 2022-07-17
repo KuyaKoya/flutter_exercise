@@ -7,7 +7,7 @@ class PostEntity {
 
   PostEntity({
     required this.userId,
-    required this.userName, 
+    required this.userName,
     required this.id,
     required this.title,
     required this.body,

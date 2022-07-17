@@ -35,7 +35,8 @@ class CommentState {
     );
   }
 
-  CommentState asLoadSuccess(List<CommentEntity> comments, {bool canLoadMore = true}) {
+  CommentState asLoadSuccess(List<CommentEntity> comments,
+      {bool canLoadMore = true}) {
     return copyWith(
       status: CommentStateStatus.loadSuccess,
       comments: comments,
@@ -55,7 +56,8 @@ class CommentState {
     return copyWith(status: CommentStateStatus.loadingMore);
   }
 
-  CommentState asLoadMoreSuccess(List<CommentEntity> newComments, {bool canLoadMore = true}) {
+  CommentState asLoadMoreSuccess(List<CommentEntity> newComments,
+      {bool canLoadMore = true}) {
     return copyWith(
       status: CommentStateStatus.loadMoreSuccess,
       comments: [...comments, ...newComments],

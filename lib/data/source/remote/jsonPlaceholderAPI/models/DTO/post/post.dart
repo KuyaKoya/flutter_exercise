@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post.g.dart';
@@ -19,7 +18,7 @@ class Post {
 
   @override
   Map<String, dynamic> toJson() => _$PostToJson(this);
-  
+
   @override
   factory Post.fromJson(Map<String, dynamic> json) {
     return _$PostFromJson(json);

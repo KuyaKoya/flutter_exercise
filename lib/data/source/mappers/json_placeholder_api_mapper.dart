@@ -74,4 +74,3 @@ List<UserEntity> toUserEntityList(List<User> users) {
   }
   return userList;
 }
-

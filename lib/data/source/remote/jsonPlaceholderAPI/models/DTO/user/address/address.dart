@@ -18,7 +18,6 @@ class Address {
     required this.city,
     required this.zipcode,
     required this.geo,
-    
   });
 
   factory Address.fromJson(Map<String, dynamic> json) =>

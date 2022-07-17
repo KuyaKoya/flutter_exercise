@@ -24,7 +24,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(state.asLoading());
 
       final List<UserEntity> users = await _userUseCase.getAllUsers();
-      
+
       emit(state.asLoadSuccess(users));
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));

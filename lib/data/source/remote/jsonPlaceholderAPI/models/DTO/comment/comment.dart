@@ -20,7 +20,7 @@ class Comment {
 
   @override
   Map<String, dynamic> toJson() => _$CommentToJson(this);
-  
+
   @override
   factory Comment.fromJson(Map<String, dynamic> json) {
     return _$CommentFromJson(json);

@@ -6,12 +6,8 @@ class ApiRequest {
 
   final NetworkManager networkManager;
 
-  Future<Response> request(
-    RequestMethod requestMethod, 
-    String endpoint,
-    Map<String, dynamic> queryParams, 
-    String baseURL) async {
-
+  Future<Response> request(RequestMethod requestMethod, String endpoint,
+      Map<String, dynamic> queryParams, String baseURL) async {
     Response<String> response = await networkManager.request(
         requestMethod, baseURL + endpoint,
         queryParameters: queryParams);

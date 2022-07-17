@@ -55,7 +55,8 @@ class PostState {
     return copyWith(status: PostStateStatus.loadingMore);
   }
 
-  PostState asLoadMoreSuccess(List<PostEntity> newPosts, {bool canLoadMore = true}) {
+  PostState asLoadMoreSuccess(List<PostEntity> newPosts,
+      {bool canLoadMore = true}) {
     return copyWith(
       status: PostStateStatus.loadMoreSuccess,
       posts: [...posts, ...newPosts],

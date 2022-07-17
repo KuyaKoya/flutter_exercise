@@ -5,7 +5,7 @@ class UserQueryParameters {
   final String? phone;
   final String? website;
 
-   Map<String, String> toMap() {
+  Map<String, String> toMap() {
     Map<String, String> map = {
       'id': id.toString(),
       'username': username.toString(),
@@ -16,5 +16,7 @@ class UserQueryParameters {
     map.removeWhere((key, value) => value == 'null');
     return map;
   }
-  UserQueryParameters({this.id, this.username, this.email, this.phone, this.website});
+
+  UserQueryParameters(
+      {this.id, this.username, this.email, this.phone, this.website});
 }

@@ -27,7 +27,7 @@ class User {
 
   @override
   Map<String, dynamic> toJson() => _$UserToJson(this);
-  
+
   @override
   factory User.fromJson(Map<String, dynamic> json) {
     return _$UserFromJson(json);

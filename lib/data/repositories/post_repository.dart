@@ -9,7 +9,6 @@ abstract class IPostRepository {
 class PostRepository extends IPostRepository {
   PostRepository({required this.jsonPlaceHolderAPI});
 
-  
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
 
   @override

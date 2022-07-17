@@ -15,43 +15,43 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-    .then((_) {
-      runApp(
-    MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<NetworkManager>(
-          create: (context) => NetworkManager(),
-        ),
-        RepositoryProvider<JsonPlaceHolderAPI>(
-          create: (context) =>
-              JsonPlaceHolderAPI(context.read<NetworkManager>()),
-        ),
-        RepositoryProvider<BaseRepository>(
-          create: (context) =>
-              BaseRepository(context.read<JsonPlaceHolderAPI>()),
-        ),
-        RepositoryProvider<BaseUseCase>(
-          create: (context) => BaseUseCase(context.read<BaseRepository>()),
-        ),
-      ],
-      child: MultiBlocProvider(
+      .then((_) {
+    runApp(
+      MultiRepositoryProvider(
         providers: [
-          BlocProvider<PostBloc>(
-            create: (context) => PostBloc(context.read<BaseUseCase>()),
+          RepositoryProvider<NetworkManager>(
+            create: (context) => NetworkManager(),
           ),
-          BlocProvider<UserBloc>(
-            create: (context) => UserBloc(context.read<BaseUseCase>()),
+          RepositoryProvider<JsonPlaceHolderAPI>(
+            create: (context) =>
+                JsonPlaceHolderAPI(context.read<NetworkManager>()),
           ),
-          BlocProvider<AlbumBloc>(
-            create: (context) => AlbumBloc(context.read<BaseUseCase>()),
+          RepositoryProvider<BaseRepository>(
+            create: (context) =>
+                BaseRepository(context.read<JsonPlaceHolderAPI>()),
           ),
-          BlocProvider<ThemeCubit>(
-            create: (context) => ThemeCubit(),
-          )
+          RepositoryProvider<BaseUseCase>(
+            create: (context) => BaseUseCase(context.read<BaseRepository>()),
+          ),
         ],
-        child: const MyApp(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<PostBloc>(
+              create: (context) => PostBloc(context.read<BaseUseCase>()),
+            ),
+            BlocProvider<UserBloc>(
+              create: (context) => UserBloc(context.read<BaseUseCase>()),
+            ),
+            BlocProvider<AlbumBloc>(
+              create: (context) => AlbumBloc(context.read<BaseUseCase>()),
+            ),
+            BlocProvider<ThemeCubit>(
+              create: (context) => ThemeCubit(),
+            )
+          ],
+          child: const MyApp(),
+        ),
       ),
-    ),
-  );
-    });
+    );
+  });
 }

@@ -20,7 +20,7 @@ class Photo {
 
   @override
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
-  
+
   @override
   factory Photo.fromJson(Map<String, dynamic> json) {
     return _$PhotoFromJson(json);

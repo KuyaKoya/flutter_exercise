@@ -19,6 +19,7 @@ class PostList extends StatefulWidget {
 
 class _PostListState extends State<PostList> {
   // May God bless this code
+  @override
   PostBloc get postBloc => context.read<PostBloc>();
   @override
   void initState() {
@@ -30,20 +31,45 @@ class _PostListState extends State<PostList> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PostBloc, PostState>(
-      builder: (_, state) {
-        if (state.error != null) {
-          return Text(state.error.toString());
-        }
-        return Column(
-          children: [
-            Expanded(
-              child: createList(postBloc.state.posts)
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Posts'),
+          elevation: 0,
+          // add icons to scaffold
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {},
             ),
           ],
-        );
-      },
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BlocBuilder<PostBloc, PostState>(
+                builder: (_, state) {
+                  print(state.status.toString());
+                  if (state.status == PostStateStatus.loading) {
+                    return _buildLoading();
+                  }
+    
+                  return Expanded(
+                    child: createList(state.posts),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -54,4 +80,10 @@ Widget createList(List<PostEntity> posts) {
       itemBuilder: (context, index) {
         return PostItem(posts[index]);
       });
+}
+
+Widget _buildLoading() {
+  return const Center(
+    child: CircularProgressIndicator()
+    );
 }

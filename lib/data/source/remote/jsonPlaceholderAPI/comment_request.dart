@@ -13,8 +13,8 @@ class CommentRequest extends ApiRequest {
   CommentRequest(networkManager, this.queryParams) : super(networkManager);
 
   Future<List<Comment>> getCommentList() async {
-    final response = await super.request(RequestMethod.get, _endpoint, queryParams.toMap(),
-        constants.JSON_PLACEHOLDER_API_URL);
+    final response = await super.request(RequestMethod.get, _endpoint,
+        queryParams.toMap(), constants.JSON_PLACEHOLDER_API_URL);
     final parsed = jsonDecode(response.data).cast<Map<String, dynamic>>();
     return List<Comment>.from(
         parsed.map((json) => Comment.fromJson(json)).toList());
