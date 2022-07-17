@@ -8,12 +8,15 @@ import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 import 'package:flutter_exercise/presentation/states/themes/theme_cubit.dart';
 import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
+import 'package:flutter/services.dart';
 import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+    .then((_) {
+      runApp(
     MultiRepositoryProvider(
       providers: [
         RepositoryProvider<NetworkManager>(
@@ -36,10 +39,10 @@ void main() async {
           BlocProvider<PostBloc>(
             create: (context) => PostBloc(context.read<BaseUseCase>()),
           ),
-          BlocProvider<UserBloc> (
+          BlocProvider<UserBloc>(
             create: (context) => UserBloc(context.read<BaseUseCase>()),
           ),
-          BlocProvider<AlbumBloc> (
+          BlocProvider<AlbumBloc>(
             create: (context) => AlbumBloc(context.read<BaseUseCase>()),
           ),
           BlocProvider<ThemeCubit>(
@@ -50,4 +53,5 @@ void main() async {
       ),
     ),
   );
+    });
 }
