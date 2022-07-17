@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 
 import 'package:flutter_exercise/presentation/ui/screens/post/post_item.dart';
+import 'package:flutter_exercise/routes.dart';
 
 import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
@@ -47,6 +48,12 @@ class _PostListState extends State<PostList> {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.person_rounded),
+              onPressed: () {
+                AppNavigator.push(Routes.users);
+              },
             ),
           ],
         ),
