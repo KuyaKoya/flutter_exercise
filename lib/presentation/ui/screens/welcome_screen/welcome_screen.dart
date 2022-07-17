@@ -66,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                 text: 'Log In as Guest',
                 textColor: Colors.white,
                 onTap: () {
-                  AppNavigator.replaceWith(Routes.home);
+                  AppNavigator.replaceWith(Routes.users);
                 },
               ),
             ],

@@ -56,9 +56,6 @@ class AppNavigator {
         return FadeRoute(page: const AlbumList());
       case _Paths.photos:
         return FadeRoute(page: const PhotoList());
-
-      case _Paths.posts:
-      case _Paths.home:
       default:
         return FadeRoute(page: const PostList());
     }
