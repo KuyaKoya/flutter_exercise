@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
+import 'package:flutter_exercise/routes.dart';
 
 import 'presentation/states/themes/theme_cubit.dart';
 
@@ -14,6 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fleeter Demo',
       debugShowCheckedModeBanner: false,
+      navigatorKey: AppNavigator.navigatorKey,
+      onGenerateRoute: AppNavigator.onGenerateRoute,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
