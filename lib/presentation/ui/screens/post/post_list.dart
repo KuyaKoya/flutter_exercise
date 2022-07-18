@@ -66,7 +66,6 @@ class _PostListState extends State<PostList> {
                   if (state.status == PostStateStatus.loading) {
                     return _buildLoading();
                   }
-
                   return Expanded(
                     child: createList(state.posts),
                   );

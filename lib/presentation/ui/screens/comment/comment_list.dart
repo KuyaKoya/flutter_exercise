@@ -33,14 +33,14 @@ class _CommentListState extends State<CommentList> {
       body: Center(
         child: BlocBuilder<CommentBloc, CommentState>(
           builder: (_, state) {
-          if (state.error != null) {
-            return Text(state.error.toString());
-          }
-          return Expanded(
-            child: createList(state.comments),
-          );
-        },
-      ),
+            if (state.error != null) {
+              return Text(state.error.toString());
+            }
+            return Expanded(
+              child: createList(state.comments),
+            );
+          },
+        ),
       ),
     );
   }

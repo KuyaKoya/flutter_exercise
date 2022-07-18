@@ -38,8 +38,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   void _onItemSelected(PostSelectChanged event, Emitter<PostState> emit) async {
     try {
-      emit(state.asLoading());
-
       _postUseCase.setSelectedPost(event.post);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
