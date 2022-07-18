@@ -6,7 +6,7 @@ import '../../domain/entities/comment_entity.dart';
 
 abstract class ICommentRepository {
   Future<List<CommentEntity>> getAllComments();
-  Future<List<CommentEntity>> getCommentsFromPostId(String id);
+  Future<List<CommentEntity>> getCommentsFromPostId(int id);
 }
 
 class CommentRepository extends ICommentRepository {
@@ -21,7 +21,7 @@ class CommentRepository extends ICommentRepository {
   }
 
   @override
-  Future<List<CommentEntity>> getCommentsFromPostId(String id) async {
+  Future<List<CommentEntity>> getCommentsFromPostId(int? id) async {
     final commentList = await jsonPlaceHolderAPI
         .createCommentRequest(CommentQueryParameters(postId: id))
         .getCommentList();

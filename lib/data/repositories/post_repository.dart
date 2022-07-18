@@ -4,17 +4,28 @@ import 'package:flutter_exercise/domain/entities/post_entity.dart';
 
 abstract class IPostRepository {
   Future<List<PostEntity>> getAllPosts();
+  void setSelectedPost(PostEntity post);
+  int? get selectedPostId;
 }
 
 class PostRepository extends IPostRepository {
   PostRepository({required this.jsonPlaceHolderAPI});
 
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
-
+  PostEntity? _postEntity;
+  
   @override
   Future<List<PostEntity>> getAllPosts() async {
     final postList = await jsonPlaceHolderAPI.createPostRequest().getPostList();
     final userList = await jsonPlaceHolderAPI.createUserRequest().getUserList();
     return toPostEntityList(userList, postList);
+  }
+
+  @override
+  int? get selectedPostId => _postEntity?.id;
+
+  @override
+  void setSelectedPost(PostEntity post) {
+    _postEntity = post;
   }
 }

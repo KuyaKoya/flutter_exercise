@@ -20,7 +20,6 @@ class PostList extends StatefulWidget {
 
 class _PostListState extends State<PostList> {
   // May God bless this code
-  @override
   PostBloc get postBloc => context.read<PostBloc>();
   @override
   void initState() {
@@ -67,7 +66,7 @@ class _PostListState extends State<PostList> {
                   if (state.status == PostStateStatus.loading) {
                     return _buildLoading();
                   }
-    
+
                   return Expanded(
                     child: createList(state.posts),
                   );
@@ -90,7 +89,5 @@ Widget createList(List<PostEntity> posts) {
 }
 
 Widget _buildLoading() {
-  return const Center(
-    child: CircularProgressIndicator()
-    );
+  return const Center(child: CircularProgressIndicator());
 }

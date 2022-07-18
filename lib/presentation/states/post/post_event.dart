@@ -1,3 +1,5 @@
+import 'package:flutter_exercise/domain/entities/post_entity.dart';
+
 abstract class PostEvent {
   const PostEvent();
 }
@@ -11,7 +13,7 @@ class PostLoadStarted extends PostEvent {
 class PostLoadMoreStarted extends PostEvent {}
 
 class PostSelectChanged extends PostEvent {
-  final String postId;
+  final PostEntity post;
 
-  const PostSelectChanged({required this.postId});
+  const PostSelectChanged({required this.post});
 }

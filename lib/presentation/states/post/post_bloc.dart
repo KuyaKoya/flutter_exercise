@@ -18,6 +18,10 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
     );
+    on<PostSelectChanged>(
+      _onItemSelected,
+      transformer: (events, mapper) => events.switchMap(mapper),
+    );
   }
 
   void _onLoadStarted(PostLoadStarted event, Emitter<PostState> emit) async {
@@ -27,6 +31,16 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       final List<PostEntity> posts = await _postUseCase.getAllPosts();
 
       emit(state.asLoadSuccess(posts));
+    } on Exception catch (e) {
+      emit(state.asLoadFailure(e));
+    }
+  }
+
+  void _onItemSelected(PostSelectChanged event, Emitter<PostState> emit) async {
+    try {
+      emit(state.asLoading());
+
+      _postUseCase.setSelectedPost(event.post);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
     }
