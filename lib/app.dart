@@ -14,6 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       theme: ThemeData(
+          colorSchemeSeed: Color.fromARGB(255, 37, 187, 247), useMaterial3: true),
       title: 'Fleeter Demo',
       debugShowCheckedModeBanner: false,
       navigatorKey: AppNavigator.navigatorKey,

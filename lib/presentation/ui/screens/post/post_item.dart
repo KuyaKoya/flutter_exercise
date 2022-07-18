@@ -10,8 +10,7 @@ class PostItem extends StatefulWidget {
   const PostItem(this.post, {Key? key}) : super(key: key);
   final PostEntity post;
 
-  static const TextStyle _textStyle =
-      TextStyle(fontSize: 10);
+  static const TextStyle _textStyle = TextStyle(fontSize: 16);
 
   @override
   State<PostItem> createState() => _PostItemState();
@@ -20,55 +19,60 @@ class PostItem extends StatefulWidget {
 class _PostItemState extends State<PostItem> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Container(
-        decoration: const BoxDecoration(
-          shape: BoxShape.rectangle,
-          border: Border(
-            top: BorderSide(color: Color.fromARGB(255, 90, 98, 105)),
-          ),
-        ),
-        child: Padding(padding: EdgeInsets.all(12.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24.0, 8.0, 24.0, 8.0),
+      child: Card(
+        elevation: 6.0,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Container(
+            child: Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: () async {
-                      _onUserNamePressed(widget.post);
-                    },
-                    child: AutoSizeText(
-                      widget.post.userName,
-                      textAlign: TextAlign.start,
-                      style: PostItem._textStyle,
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            _onUserNamePressed(widget.post);
+                          },
+                          child: AutoSizeText(
+                            widget.post.userName,
+                            textAlign: TextAlign.start,
+                            style: PostItem._textStyle,
+                          ),
+                        ),
+                        AutoSizeText(
+                          widget.post.title,
+                          style: const TextStyle(
+                              fontSize: 28, fontWeight: FontWeight.bold),
+                          maxLines: 4,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(6.0, 6.0, 0, 0),
+                          child: AutoSizeText(
+                            widget.post.body,
+                            style: PostItem._textStyle,
+                            maxLines: 4,
+                          ),
+                        ),
+                        ElevatedButton(
+                            onPressed: () async {
+                              _onCommentButtonPressed(context, widget.post);
+                            },
+                            child: Text("Comment"))
+                      ],
                     ),
                   ),
-                  AutoSizeText(
-                    widget.post.title,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    maxLines: 4,
-                  ),
-                  AutoSizeText(
-                    widget.post.body,
-                    style: PostItem._textStyle,
-                    maxLines: 4,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      _onCommentButtonPressed(context, widget.post);
-                    },
-                    child: Text("Comment"))
                 ],
               ),
             ),
-          ],
-        ),
+          ),
         ),
       ),
     );
