@@ -8,6 +8,7 @@ import 'package:flutter_exercise/presentation/states/post/post_event.dart';
 import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
 import 'package:flutter_exercise/presentation/states/user/user_event.dart';
 import 'package:flutter_exercise/presentation/states/user/user_state.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -37,6 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }
 
         return Scaffold(
+          appBar: const CustomAppBar(),
           body: ListView(
             children: <Widget>[
               Container(

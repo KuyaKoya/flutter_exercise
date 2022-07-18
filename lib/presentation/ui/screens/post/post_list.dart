@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 
 import 'package:flutter_exercise/presentation/ui/screens/post/post_item.dart';
-import 'package:flutter_exercise/routes.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
 
 import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
@@ -39,30 +39,14 @@ class _PostListState extends State<PostList> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Posts'),
-          elevation: 0,
-          // add icons to scaffold
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.person_rounded),
-              onPressed: () {
-                AppNavigator.push(Routes.users);
-              },
-            ),
-          ],
-        ),
+        appBar: const CustomAppBar(),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BlocBuilder<PostBloc, PostState>(
                 builder: (_, state) {
-                  print(state.status.toString());
+                  debugPrint(state.status.toString());
                   if (state.status == PostStateStatus.loading) {
                     return _buildLoading();
                   }

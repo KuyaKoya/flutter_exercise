@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
 import 'package:flutter_exercise/presentation/ui/widgets/button.dart';
 import 'package:flutter_exercise/routes.dart';
 
@@ -8,6 +9,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(),
       backgroundColor: Colors.white,
       body: Stack(children: [
         const SizedBox(
