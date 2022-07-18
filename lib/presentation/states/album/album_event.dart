@@ -1,3 +1,5 @@
+import 'package:flutter_exercise/domain/entities/album_entity.dart';
+
 abstract class AlbumEvent {
   const AlbumEvent();
 }
@@ -11,7 +13,7 @@ class AlbumLoadStarted extends AlbumEvent {
 class AlbumLoadMoreStarted extends AlbumEvent {}
 
 class AlbumSelectChanged extends AlbumEvent {
-  final String albumId;
+  final AlbumEntity album;
 
-  const AlbumSelectChanged({required this.albumId});
+  const AlbumSelectChanged({required this.album});
 }

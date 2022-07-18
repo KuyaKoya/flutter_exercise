@@ -7,12 +7,15 @@ import 'package:flutter_exercise/domain/entities/album_entity.dart';
 abstract class IAlbumRepository {
   Future<List<AlbumEntity>> getAllAlbums();
   Future<List<AlbumEntity>> getAlbumsFromUserId(int? id);
+  void setSelectedPost(AlbumEntity album);
+  int? get selectedAlbumId;
 }
 
 class AlbumRepository extends IAlbumRepository {
   AlbumRepository({required this.jsonPlaceHolderAPI});
 
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
+  AlbumEntity? _albumEntity;
 
   @override
   Future<List<AlbumEntity>> getAllAlbums() async {
@@ -28,4 +31,12 @@ class AlbumRepository extends IAlbumRepository {
         .getAlbumList();
     return toAlbumEntityList(albumList);
   }
+
+  @override
+  void setSelectedPost(AlbumEntity album) {
+    _albumEntity = album;
+  }
+
+  @override
+  int? get selectedAlbumId => _albumEntity?.userId;
 }

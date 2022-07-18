@@ -9,7 +9,7 @@ import 'album_state.dart';
 
 class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
   final BaseUseCase _baseUseCase;
-  AlbumUseCaseImpl get _albumUseCaseImpl {
+  AlbumUseCaseImpl get _albumUseCase {
     return _baseUseCase.albumUseCaseImpl;
   }
 
@@ -18,15 +18,28 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
     );
+    on<AlbumSelectChanged>(
+      _onItemSelected,
+      transformer: (events, mapper) => events.switchMap(mapper),
+    );
   }
 
   void _onLoadStarted(AlbumLoadStarted event, Emitter<AlbumState> emit) async {
     try {
       emit(state.asLoading());
 
-      final List<AlbumEntity> posts = await _albumUseCaseImpl.getAllAlbums();
+      final List<AlbumEntity> album = await _albumUseCase.getAlbumsFromUserId();
 
-      emit(state.asLoadSuccess(posts));
+      emit(state.asLoadSuccess(album));
+    } on Exception catch (e) {
+      emit(state.asLoadFailure(e));
+    }
+  }
+
+  void _onItemSelected(
+      AlbumSelectChanged event, Emitter<AlbumState> emit) async {
+    try {
+      _albumUseCase.setSelectedPost(event.album);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
     }

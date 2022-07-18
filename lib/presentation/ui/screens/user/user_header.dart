@@ -2,10 +2,12 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
 import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
 import 'package:flutter_exercise/presentation/states/user/user_event.dart';
 import 'package:flutter_exercise/presentation/states/user/user_state.dart';
 import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/routes.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -78,17 +80,10 @@ class _UserScreenState extends State<UserScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      const Text(
-                        'Flutter Developer',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                        ),
-                      ),
                     ],
                   ),
                 ),
-                createPostAlbumCount(),
+                createPostAlbumCount(state.user),
                 Column(
                   children: <Widget>[
                     createInfoTile('Email', state.user?.username ?? ''),
@@ -128,55 +123,35 @@ Widget createInfoTile(title, subTitle) {
   );
 }
 
-Widget createPostAlbumCount() {
+Widget createPostAlbumCount(UserEntity? user) {
   return Row(children: <Widget>[
     Expanded(
       child: Container(
         color: Colors.blueAccent.shade200,
-        child: const ListTile(
-          title: Text(
-            '5000',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: const [
+            ListTile(
+              leading: Icon(Icons.photo_album_rounded),
+              title: Text(
+                'Albums',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white70,
+                ),
+              ),
+              onTap: _onAlbumPressed,
             ),
-          ),
-          subtitle: Text(
-            'Posts',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white70,
-            ),
-          ),
-        ),
-      ),
-    ),
-    Expanded(
-      child: Container(
-        color: Colors.blueAccent.shade200,
-        child: const ListTile(
-          title: Text(
-            '5000',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              color: Colors.white,
-            ),
-          ),
-          subtitle: Text(
-            'Albums',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white70,
-            ),
-          ),
+          ],
         ),
       ),
     ),
   ]);
+}
+
+void _onAlbumPressed() {
+  // context.read<UserBloc>().add(UserSelectChanged(user: user));
+  AppNavigator.push(Routes.albums);
 }

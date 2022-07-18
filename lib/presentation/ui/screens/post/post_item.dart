@@ -25,52 +25,50 @@ class _PostItemState extends State<PostItem> {
         elevation: 6.0,
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () async {
-                            _onUserNamePressed(context, widget.post);
-                          },
-                          child: AutoSizeText(
-                            widget.post.userName,
-                            textAlign: TextAlign.start,
-                            style: PostItem._textStyle,
-                          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          _onUserNamePressed(context, widget.post);
+                        },
+                        child: AutoSizeText(
+                          widget.post.userName,
+                          textAlign: TextAlign.start,
+                          style: PostItem._textStyle,
                         ),
-                        AutoSizeText(
-                          widget.post.title,
-                          style: const TextStyle(
-                              fontSize: 28, fontWeight: FontWeight.bold),
+                      ),
+                      AutoSizeText(
+                        widget.post.title,
+                        style: const TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold),
+                        maxLines: 4,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(6.0, 6.0, 0, 0),
+                        child: AutoSizeText(
+                          widget.post.body,
+                          style: PostItem._textStyle,
                           maxLines: 4,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(6.0, 6.0, 0, 0),
-                          child: AutoSizeText(
-                            widget.post.body,
-                            style: PostItem._textStyle,
-                            maxLines: 4,
-                          ),
-                        ),
-                        ElevatedButton(
-                            onPressed: () async {
-                              _onCommentButtonPressed(context, widget.post);
-                            },
-                            child: const Text("Comment"))
-                      ],
-                    ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () async {
+                            _onCommentButtonPressed(context, widget.post);
+                          },
+                          child: const Text("Comment"))
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
