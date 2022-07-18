@@ -13,7 +13,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     return _baseUseCase.commentUseCaseImpl;
   }
 
-  CommentBloc(this._baseUseCase) : super(CommentState.initial()) {
+  CommentBloc(this._baseUseCase) : super(const CommentState.initial()) {
     on<CommentLoadStarted>(
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
@@ -30,7 +30,6 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
 
       emit(state.asLoadSuccess(comments));
     } on Exception catch (e) {
-      print(e);
       emit(state.asLoadFailure(e));
     }
   }

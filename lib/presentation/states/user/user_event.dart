@@ -1,3 +1,5 @@
+import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
+
 abstract class UserEvent {
   const UserEvent();
 }
@@ -9,7 +11,7 @@ class UserLoadStarted extends UserEvent {
 }
 
 class UserSelectChanged extends UserEvent {
-  final String userId;
+  final UserEntity user;
 
-  const UserSelectChanged({required this.userId});
+  const UserSelectChanged({required this.user});
 }

@@ -7,7 +7,6 @@ import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DT
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/post/post.dart';
 import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/user/user.dart';
 import 'package:flutter_exercise/domain/entities/album_entity.dart';
-import 'package:flutter_exercise/domain/entities/comment_entity.dart';
 import 'package:flutter_exercise/domain/entities/post_entity.dart';
 
 List<PostEntity> toPostEntityList(List<User> users, List<Post> posts) {
@@ -73,4 +72,31 @@ List<UserEntity> toUserEntityList(List<User> users) {
     ));
   }
   return userList;
+}
+
+UserEntity toUserEntity(User user) {
+  UserEntity userEntity;
+  userEntity = UserEntity(
+    id: user.id,
+    email: user.email,
+    phone: user.phone,
+    company: Company(
+      name: user.company.name,
+      catchPhrase: user.company.catchPhrase,
+      bs: user.company.bs,
+    ),
+    username: user.username,
+    website: user.website,
+    address: Address(
+      street: user.address.street,
+      suite: user.address.suite,
+      city: user.address.city,
+      zipcode: user.address.zipcode,
+      geo: Geo(
+        lat: user.address.geo.lat,
+        lng: user.address.geo.lng,
+      ),
+    ),
+  );
+  return userEntity;
 }

@@ -1,4 +1,3 @@
-import 'package:flutter_exercise/domain/entities/post_entity.dart';
 import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
 
 enum UserStateStatus {
@@ -10,13 +9,13 @@ enum UserStateStatus {
 
 class UserState {
   final UserStateStatus status;
-  final List<UserEntity> users;
+  final UserEntity? user;
   final int selectedUserId;
   final Exception? error;
 
   const UserState._({
     this.status = UserStateStatus.loading,
-    this.users = const [],
+    this.user,
     this.selectedUserId = 0,
     this.error,
   });
@@ -29,10 +28,10 @@ class UserState {
     );
   }
 
-  UserState asLoadSuccess(List<UserEntity> users) {
+  UserState asLoadSuccess(UserEntity user) {
     return copyWith(
       status: UserStateStatus.loadSuccess,
-      users: users,
+      user: user,
       page: 1,
     );
   }
@@ -46,14 +45,14 @@ class UserState {
 
   UserState copyWith({
     UserStateStatus? status,
-    List<UserEntity>? users,
+    UserEntity? user,
     int? selectedUserId,
     int? page,
     Exception? error,
   }) {
     return UserState._(
       status: status ?? this.status,
-      users: users ?? this.users,
+      user: user ?? this.user,
       selectedUserId: selectedUserId ?? this.selectedUserId,
       error: error ?? this.error,
     );
