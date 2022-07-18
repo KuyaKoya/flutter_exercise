@@ -11,7 +11,7 @@ class PostItem extends StatefulWidget {
   final PostEntity post;
 
   static const TextStyle _textStyle =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 10);
 
   @override
   State<PostItem> createState() => _PostItemState();
@@ -26,9 +26,10 @@ class _PostItemState extends State<PostItem> {
         decoration: const BoxDecoration(
           shape: BoxShape.rectangle,
           border: Border(
-            top: BorderSide(color: Colors.grey),
+            top: BorderSide(color: Color.fromARGB(255, 90, 98, 105)),
           ),
         ),
+        child: Padding(padding: EdgeInsets.all(12.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +51,7 @@ class _PostItemState extends State<PostItem> {
                   ),
                   AutoSizeText(
                     widget.post.title,
-                    style: PostItem._textStyle,
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     maxLines: 4,
                   ),
                   AutoSizeText(
@@ -59,14 +60,15 @@ class _PostItemState extends State<PostItem> {
                     maxLines: 4,
                   ),
                   ElevatedButton(
-                      onPressed: () async {
-                        _onCommentButtonPressed(context, widget.post);
-                      },
-                      child: Text("Comment"))
+                    onPressed: () async {
+                      _onCommentButtonPressed(context, widget.post);
+                    },
+                    child: Text("Comment"))
                 ],
               ),
             ),
           ],
+        ),
         ),
       ),
     );

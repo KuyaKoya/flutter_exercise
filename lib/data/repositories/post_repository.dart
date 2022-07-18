@@ -6,6 +6,7 @@ abstract class IPostRepository {
   Future<List<PostEntity>> getAllPosts();
   void setSelectedPost(PostEntity post);
   int? get selectedPostId;
+  int? get selectedUserId;
 }
 
 class PostRepository extends IPostRepository {
@@ -13,7 +14,7 @@ class PostRepository extends IPostRepository {
 
   final JsonPlaceHolderAPI jsonPlaceHolderAPI;
   PostEntity? _postEntity;
-  
+
   @override
   Future<List<PostEntity>> getAllPosts() async {
     final postList = await jsonPlaceHolderAPI.createPostRequest().getPostList();
@@ -28,4 +29,7 @@ class PostRepository extends IPostRepository {
   void setSelectedPost(PostEntity post) {
     _postEntity = post;
   }
+  
+  @override
+  int? get selectedUserId =>  _postEntity?.userId;
 }

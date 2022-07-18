@@ -32,10 +32,10 @@ class _CommentItemState extends State<CommentItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AutoSizeText(
-                    widget.comment.name,
-                    textAlign: TextAlign.start,
-                    style: CommentItem._textStyle,
-                  ),
+                  widget.comment.name,
+                  textAlign: TextAlign.start,
+                  style: CommentItem._textStyle,
+                ),
                 AutoSizeText(
                   widget.comment.email,
                   style: CommentItem._textStyle,

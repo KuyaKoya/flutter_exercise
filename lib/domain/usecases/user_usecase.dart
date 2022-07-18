@@ -18,5 +18,4 @@ class UserUseCaseImpl extends IUserUseCase {
   Future<List<UserEntity>> getAllUsers() {
     return userRepository.getAllUsers();
   }
-  
 }
