@@ -5,6 +5,7 @@ abstract class IAlbumUseCase extends BaseUseCase {
   IAlbumUseCase(super.baseRepository);
   Future<List<AlbumEntity>> getAllAlbums();
   Future<List<AlbumEntity>> getAlbumsFromUserId();
+  void setSelectedPost(AlbumEntity album);
 }
 
 class AlbumUseCaseImpl extends IAlbumUseCase {
@@ -22,5 +23,10 @@ class AlbumUseCaseImpl extends IAlbumUseCase {
   Future<List<AlbumEntity>> getAlbumsFromUserId() {
     int? id = _userRepository.currentUserId;
     return _albumRepository.getAlbumsFromUserId(id);
+  }
+
+  @override
+  void setSelectedPost(AlbumEntity album) {
+    _albumRepository.setSelectedPost(album);
   }
 }

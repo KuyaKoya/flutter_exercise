@@ -5,7 +5,7 @@ import 'package:flutter_exercise/presentation/ui/screens/comment/comment_list.da
 import 'package:flutter_exercise/presentation/ui/screens/photo/photo_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/splash/splash.dart';
-import 'package:flutter_exercise/presentation/ui/screens/user/user_screen.dart';
+import 'package:flutter_exercise/presentation/ui/screens/user/user_header.dart';
 import 'package:flutter_exercise/presentation/ui/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter_exercise/utils/fade_page_route.dart';
 
