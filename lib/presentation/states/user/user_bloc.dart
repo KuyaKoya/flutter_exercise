@@ -17,15 +17,27 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
     );
+    on<UserSelectChanged>(
+      _onItemSelected,
+      transformer: ((events, mapper) => events.switchMap((mapper))),
+    );
   }
 
   void _onLoadStarted(UserLoadStarted event, Emitter<UserState> emit) async {
     try {
       emit(state.asLoading());
 
-      final List<UserEntity> users = await _userUseCase.getAllUsers();
+      final UserEntity user = await _userUseCase.getUserFromPostId();
 
-      emit(state.asLoadSuccess(users));
+      emit(state.asLoadSuccess(user));
+    } on Exception catch (e) {
+      emit(state.asLoadFailure(e));
+    }
+  }
+
+  void _onItemSelected(UserSelectChanged event, Emitter<UserState> emit) async {
+    try {
+      _userUseCase.setSelectedUser(event.user);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
     }

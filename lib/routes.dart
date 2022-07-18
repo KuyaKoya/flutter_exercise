@@ -4,8 +4,8 @@ import 'package:flutter_exercise/presentation/ui/screens/album/album_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/comment/comment_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/photo/photo_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
-import 'package:flutter_exercise/presentation/ui/screens/profile/profile_screen.dart';
 import 'package:flutter_exercise/presentation/ui/screens/splash/splash.dart';
+import 'package:flutter_exercise/presentation/ui/screens/user/user_screen.dart';
 import 'package:flutter_exercise/presentation/ui/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter_exercise/utils/fade_page_route.dart';
 
@@ -51,7 +51,7 @@ class AppNavigator {
       case _Paths.comments:
         return FadeRoute(page: const CommentList());
       case _Paths.users:
-        return FadeRoute(page: const ProfileScreen());
+        return FadeRoute(page: const UserScreen());
       case _Paths.albums:
         return FadeRoute(page: const AlbumList());
       case _Paths.photos:

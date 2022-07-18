@@ -6,7 +6,7 @@ import 'package:flutter_exercise/domain/entities/album_entity.dart';
 //Hello
 abstract class IAlbumRepository {
   Future<List<AlbumEntity>> getAllAlbums();
-  Future<List<AlbumEntity>> getAlbumsFromUserId(int id);
+  Future<List<AlbumEntity>> getAlbumsFromUserId(int? id);
 }
 
 class AlbumRepository extends IAlbumRepository {
@@ -22,7 +22,7 @@ class AlbumRepository extends IAlbumRepository {
   }
 
   @override
-  Future<List<AlbumEntity>> getAlbumsFromUserId(int id) async {
+  Future<List<AlbumEntity>> getAlbumsFromUserId(int? id) async {
     final albumList = await jsonPlaceHolderAPI
         .createAlbumRequest(AlbumQueryParams(userId: id))
         .getAlbumList();

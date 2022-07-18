@@ -13,6 +13,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0.0, // for elevation
       titleSpacing: 0.0, // if you want remove title spacing with back button
       title: const Text('Fleeter'),
+      backgroundColor: Colors.blue,
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.add),
@@ -30,7 +31,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            Navigator.of(context).pop();
+            AppNavigator.pop();
           },
           splashColor: Colors.red[800],
         ),

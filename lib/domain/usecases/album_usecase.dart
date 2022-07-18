@@ -20,7 +20,7 @@ class AlbumUseCaseImpl extends IAlbumUseCase {
 
   @override
   Future<List<AlbumEntity>> getAlbumsFromUserId() {
-    int id = _userRepository.currentUserId;
+    int? id = _userRepository.currentUserId;
     return _albumRepository.getAlbumsFromUserId(id);
   }
 }

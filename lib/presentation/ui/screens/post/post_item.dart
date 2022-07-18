@@ -27,7 +27,7 @@ class _PostItemState extends State<PostItem> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Container(
             child: Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +39,7 @@ class _PostItemState extends State<PostItem> {
                       children: [
                         InkWell(
                           onTap: () async {
-                            _onUserNamePressed(widget.post);
+                            _onUserNamePressed(context, widget.post);
                           },
                           child: AutoSizeText(
                             widget.post.userName,
@@ -65,7 +65,7 @@ class _PostItemState extends State<PostItem> {
                             onPressed: () async {
                               _onCommentButtonPressed(context, widget.post);
                             },
-                            child: Text("Comment"))
+                            child: const Text("Comment"))
                       ],
                     ),
                   ),
@@ -84,7 +84,7 @@ void _onCommentButtonPressed(BuildContext context, PostEntity post) {
   AppNavigator.push(Routes.comments);
 }
 
-void _onUserNamePressed(PostEntity post) {
-  debugPrint("pressed");
+void _onUserNamePressed(BuildContext context, PostEntity post) {
+  context.read<PostBloc>().add(PostSelectChanged(post: post));
   AppNavigator.push(Routes.users);
 }
