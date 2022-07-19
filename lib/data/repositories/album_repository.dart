@@ -38,5 +38,5 @@ class AlbumRepository extends IAlbumRepository {
   }
 
   @override
-  int? get selectedAlbumId => _albumEntity?.userId;
+  int? get selectedAlbumId => _albumEntity?.id;
 }

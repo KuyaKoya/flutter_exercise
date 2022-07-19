@@ -1,6 +1,7 @@
 import 'package:flutter_exercise/data/repositories/base_repository.dart';
 import 'package:flutter_exercise/domain/usecases/comment_usecase.dart';
 import 'package:flutter_exercise/domain/usecases/album_usecase.dart';
+import 'package:flutter_exercise/domain/usecases/photo_usecase.dart';
 import 'package:flutter_exercise/domain/usecases/user_usecase.dart';
 
 import '../domain/usecases/post_usecase.dart';
@@ -11,6 +12,7 @@ abstract class IBaseUseCase {
   CommentUseCaseImpl get commentUseCaseImpl;
   AlbumUseCaseImpl get albumUseCaseImpl;
   UserUseCaseImpl get userUseCaseImpl;
+  PhotoUseCaseImpl get photoUseCaseImpl;
 }
 
 class BaseUseCase extends IBaseUseCase {
@@ -33,4 +35,7 @@ class BaseUseCase extends IBaseUseCase {
 
   @override
   UserUseCaseImpl get userUseCaseImpl => UserUseCaseImpl(baseRepository);
+
+  @override
+  PhotoUseCaseImpl get photoUseCaseImpl => PhotoUseCaseImpl(baseRepository);
 }

@@ -1,8 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/domain/entities/album_entity.dart';
+import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
+import 'package:flutter_exercise/presentation/states/album/album_event.dart';
+import 'package:flutter_exercise/routes.dart';
 
-class AlbumItem extends StatelessWidget {
+class AlbumItem extends StatefulWidget {
   const AlbumItem(this.album, {Key? key}) : super(key: key);
   final AlbumEntity album;
 
@@ -10,16 +14,16 @@ class AlbumItem extends StatelessWidget {
       TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
 
   @override
+  State<AlbumItem> createState() => _AlbumItemState();
+}
+
+class _AlbumItemState extends State<AlbumItem> {
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Container(
-        decoration: const BoxDecoration(
-          shape: BoxShape.rectangle,
-          border: Border(
-            top: BorderSide(color: Colors.grey),
-          ),
-        ),
+    return Card(
+      elevation: 6.0,
+      child: InkWell(
+        onTap: () => _onAlbumPressed(context, widget.album),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -27,12 +31,14 @@ class AlbumItem extends StatelessWidget {
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AutoSizeText(
-                    album.title,
-                    textAlign: TextAlign.start,
-                    style: _textStyle,
+                    widget.album.title,
+                    textAlign: TextAlign.center,
+                    style: AlbumItem._textStyle,
+                    maxLines: 2,
                   ),
                 ],
               ),
@@ -42,4 +48,9 @@ class AlbumItem extends StatelessWidget {
       ),
     );
   }
+}
+
+void _onAlbumPressed(BuildContext context, AlbumEntity album) {
+  context.read<AlbumBloc>().add(AlbumSelectChanged(album: album));
+  AppNavigator.push(Routes.photos);
 }

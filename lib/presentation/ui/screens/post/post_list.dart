@@ -46,7 +46,6 @@ class _PostListState extends State<PostList> {
             children: [
               BlocBuilder<PostBloc, PostState>(
                 builder: (_, state) {
-                  debugPrint(state.status.toString());
                   if (state.status == PostStateStatus.loading) {
                     return _buildLoading();
                   }

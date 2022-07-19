@@ -25,17 +25,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             AppNavigator.push(Routes.users);
           },
         ),
-      ], //Action icon search as search icon, notification icon
-      leading: Material(
-        //Custom leading icon, such as back icon or other icon
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () {
-            AppNavigator.pop();
-          },
-          splashColor: Colors.red[800],
-        ),
-      ),
+      ],
     );
   }
 }

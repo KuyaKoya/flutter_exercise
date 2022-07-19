@@ -7,8 +7,8 @@ part of 'photo.dart';
 // **************************************************************************
 
 Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
-      albumId: json['albumId'] as String,
-      id: json['id'] as String,
+      albumId: json['albumId'] as int,
+      id: json['id'] as int,
       title: json['title'] as String,
       url: json['url'] as String,
       thumbnailUrl: json['thumbnailUrl'] as String,

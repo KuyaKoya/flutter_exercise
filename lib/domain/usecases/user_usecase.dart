@@ -34,7 +34,7 @@ class UserUseCaseImpl extends IUserUseCase {
   }
 
   @override
-  void setSelectedUser(UserEntity user) {
+  void setSelectedUser(UserEntity? user) {
     _userRepository.setCurrentUser(user);
   }
 }

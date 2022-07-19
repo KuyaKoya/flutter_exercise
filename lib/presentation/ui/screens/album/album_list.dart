@@ -39,10 +39,13 @@ class _AlbumListState extends State<AlbumList> {
             if (state.error != null) {
               return Text(state.error.toString());
             }
-            return Column(
-              children: [
-                Expanded(child: createList(albumBloc.state.albums)),
-              ],
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(child: createList(albumBloc.state.albums)),
+                ],
+              ),
             );
           },
         ),
@@ -52,9 +55,18 @@ class _AlbumListState extends State<AlbumList> {
 }
 
 Widget createList(List<AlbumEntity> albums) {
-  return ListView.builder(
+  return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20),
       itemCount: albums.length,
-      itemBuilder: (context, index) {
-        return AlbumItem(albums[index]);
+      itemBuilder: (BuildContext context, index) {
+        return Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+          child: AlbumItem(albums[index]),
+        );
       });
 }
