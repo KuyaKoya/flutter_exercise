@@ -53,18 +53,21 @@ class _PostItemState extends State<PostItem> {
                         maxLines: 4,
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(6.0, 6.0, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(6.0, 6.0, 0, 12.0),
                         child: AutoSizeText(
                           widget.post.body,
                           style: PostItem._textStyle,
                           maxLines: 4,
                         ),
                       ),
-                      ElevatedButton(
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0, 0.0),
+                        child: OutlinedButton(
                           onPressed: () async {
                             _onCommentButtonPressed(context, widget.post);
                           },
-                          child: const Text("Comment"))
+                          child: const Text("COMMENTS"))
+                      ),
                     ],
                   ),
                 ),
