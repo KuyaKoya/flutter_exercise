@@ -5,15 +5,12 @@ import 'package:flutter_exercise/presentation/ui/screens/photo/photo_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/splash/splash.dart';
 import 'package:flutter_exercise/presentation/ui/screens/user/user_screen.dart';
-import 'package:flutter_exercise/presentation/ui/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter_exercise/utils/fade_page_route.dart';
 
 enum Routes { splash, welcome, home, posts, comments, users, albums, photos }
 
 class _Paths {
   static const String splash = '/';
-  static const String welcome = '/welcome';
-  static const String home = '/home';
   static const String posts = '/posts';
   static const String comments = '/posts/comments';
   static const String users = '/users';
@@ -23,8 +20,6 @@ class _Paths {
 // TODO(Anthony): Will refactor the welcome screen
   static const Map<Routes, String> _pathMap = {
     Routes.splash: _Paths.splash,
-    Routes.welcome: _Paths.welcome,
-    Routes.home: _Paths.home,
     Routes.posts: _Paths.posts,
     Routes.comments: _Paths.comments,
     Routes.users: _Paths.users,
@@ -42,8 +37,6 @@ class AppNavigator {
     switch (settings.name) {
       case _Paths.splash:
         return FadeRoute(page: const SplashScreen());
-      case _Paths.welcome:
-        return FadeRoute(page: const WelcomeScreen());
       case _Paths.comments:
         return FadeRoute(page: const CommentList());
       case _Paths.users:
