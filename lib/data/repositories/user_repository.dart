@@ -26,14 +26,15 @@ class UserRepository extends IUserRepository {
   int? get currentUserId => _currentUser?.id;
 
   @override
-  void setCurrentUser(UserEntity user) {
+  void setCurrentUser(UserEntity? user) {
     _currentUser = user;
   }
 
   @override
   Future<UserEntity> getUserFromPostId(int? id) async {
     final userList = await jsonPlaceHolderAPI
-        .createUserRequest(UserQueryParameters(id: id)).getUserList();
+        .createUserRequest(UserQueryParameters(id: id))
+        .getUserList();
     return toUserEntity(userList.first);
   }
 }

@@ -1,4 +1,6 @@
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/photo/photo.dart';
 import 'package:flutter_exercise/domain/entities/comment_entity.dart';
+import 'package:flutter_exercise/domain/entities/photo_entity.dart';
 import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
 
 import '../../../domain/entities/post_entity.dart';
@@ -43,6 +45,19 @@ List<AlbumEntity> toAlbumEntityList(List<Album> albums) {
         AlbumEntity(userId: album.userId, id: album.id, title: album.title));
   }
   return albumList;
+}
+
+List<PhotoEntity> toPhotoEntity(List<Photo> photos) {
+  List<PhotoEntity> photoList = [];
+  for (var photo in photos) {
+    photoList.add(PhotoEntity(
+        albumId: photo.albumId,
+        id: photo.id,
+        title: photo.title,
+        url: photo.url,
+        thumbnailUrl: photo.thumbnailUrl));
+  }
+  return photoList;
 }
 
 List<UserEntity> toUserEntityList(List<User> users) {

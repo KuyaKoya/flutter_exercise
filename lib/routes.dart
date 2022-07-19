@@ -40,7 +40,6 @@ class AppNavigator {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   static Route onGenerateRoute(RouteSettings settings) {
-    debugPrint("generate route: $settings");
     switch (settings.name) {
       case _Paths.splash:
         return FadeRoute(page: const SplashScreen());

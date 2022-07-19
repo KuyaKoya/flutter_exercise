@@ -83,7 +83,7 @@ class _UserScreenState extends State<UserScreen> {
                     ],
                   ),
                 ),
-                createPostAlbumCount(state.user),
+                createPostAlbumCount(context, state.user),
                 Column(
                   children: <Widget>[
                     createInfoTile('Email', state.user?.username ?? ''),
@@ -123,7 +123,7 @@ Widget createInfoTile(title, subTitle) {
   );
 }
 
-Widget createPostAlbumCount(UserEntity? user) {
+Widget createPostAlbumCount(BuildContext context, UserEntity? user) {
   return Row(children: <Widget>[
     Expanded(
       child: Container(
@@ -131,10 +131,10 @@ Widget createPostAlbumCount(UserEntity? user) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
+          children: [
             ListTile(
-              leading: Icon(Icons.photo_album_rounded),
-              title: Text(
+              leading: const Icon(Icons.photo_album_rounded),
+              title: const Text(
                 'Albums',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -142,7 +142,7 @@ Widget createPostAlbumCount(UserEntity? user) {
                   color: Colors.white70,
                 ),
               ),
-              onTap: _onAlbumPressed,
+              onTap: () => _onAlbumPressed(context, user),
             ),
           ],
         ),
@@ -151,7 +151,7 @@ Widget createPostAlbumCount(UserEntity? user) {
   ]);
 }
 
-void _onAlbumPressed() {
-  // context.read<UserBloc>().add(UserSelectChanged(user: user));
+void _onAlbumPressed(BuildContext context, UserEntity? user) {
+  context.read<UserBloc>().add(UserSelectChanged(user: user));
   AppNavigator.push(Routes.albums);
 }

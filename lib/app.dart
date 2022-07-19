@@ -6,16 +6,15 @@ import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter_exercise/routes.dart';
 
-import 'presentation/states/themes/theme_cubit.dart';
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       theme: ThemeData(
-          colorSchemeSeed: Color.fromARGB(255, 37, 187, 247), useMaterial3: true),
+      theme: ThemeData(
+          colorSchemeSeed: const Color.fromARGB(255, 37, 187, 247),
+          useMaterial3: true),
       title: 'Fleeter Demo',
       debugShowCheckedModeBanner: false,
       navigatorKey: AppNavigator.navigatorKey,
@@ -42,9 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var themeCubit = BlocProvider.of<ThemeCubit>(context, listen: true);
-    var isDark = themeCubit.isDark;
-
     return Scaffold(
       //  May God bless this scaffold.
       appBar: AppBar(
@@ -52,17 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("The theme is currently $isDark"),
-          const Flexible(child: PostList()),
+        children: const [
+          Flexible(child: PostList()),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          themeCubit.toggleTheme();
-        },
-        tooltip: 'Toggle Theme',
-        child: const Icon(Icons.wb_sunny_outlined),
       ),
     );
   }
