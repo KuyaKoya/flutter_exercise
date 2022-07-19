@@ -38,7 +38,7 @@ class _CommentListState extends State<CommentList> {
             if (state.error != null) {
               return Text(state.error.toString());
             }
-            return Expanded(
+            return Container(
               child: createList(state.comments),
             );
           },

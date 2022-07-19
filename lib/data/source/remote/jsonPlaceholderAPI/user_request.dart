@@ -19,6 +19,4 @@ class UserRequest extends ApiRequest {
     final parsed = jsonDecode(response.data).cast<Map<String, dynamic>>();
     return List<User>.from(parsed.map((json) => User.fromJson(json)).toList());
   }
-
-  
 }

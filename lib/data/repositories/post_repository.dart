@@ -29,7 +29,7 @@ class PostRepository extends IPostRepository {
   void setSelectedPost(PostEntity post) {
     _postEntity = post;
   }
-  
+
   @override
-  int? get selectedUserId =>  _postEntity?.userId;
+  int? get selectedUserId => _postEntity?.userId;
 }

@@ -61,13 +61,12 @@ class _PostItemState extends State<PostItem> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0, 0.0),
-                        child: OutlinedButton(
-                          onPressed: () async {
-                            _onCommentButtonPressed(context, widget.post);
-                          },
-                          child: const Text("COMMENTS"))
-                      ),
+                          padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0, 0.0),
+                          child: OutlinedButton(
+                              onPressed: () async {
+                                _onCommentButtonPressed(context, widget.post);
+                              },
+                              child: const Text("COMMENTS"))),
                     ],
                   ),
                 ),
