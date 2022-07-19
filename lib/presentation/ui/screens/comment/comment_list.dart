@@ -6,6 +6,7 @@ import 'package:flutter_exercise/presentation/states/comment/comment_bloc.dart';
 import 'package:flutter_exercise/presentation/states/comment/comment_state.dart';
 import 'package:flutter_exercise/presentation/ui/screens/comment/comment_item.dart';
 import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
 import '../../../../domain/entities/comment_entity.dart';
 import '../../../states/comment/comment_event.dart';
 
@@ -20,8 +21,8 @@ class _CommentListState extends State<CommentList> {
   // May God bless this code
   CommentBloc get commentBloc => context.read<CommentBloc>();
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
     scheduleMicrotask(() {
       context.read<CommentBloc>().add(const CommentLoadStarted(loadAll: true));
@@ -35,6 +36,9 @@ class _CommentListState extends State<CommentList> {
       body: Center(
         child: BlocBuilder<CommentBloc, CommentState>(
           builder: (_, state) {
+            if (state.status == CommentStateStatus.loading) {
+              return const LoadingData();
+            }
             if (state.error != null) {
               return Text(state.error.toString());
             }
@@ -54,4 +58,8 @@ Widget createList(List<CommentEntity> comments) {
       itemBuilder: (context, index) {
         return CommentItem(comments[index]);
       });
+}
+
+Widget _buildLoading() {
+  return const Center(child: CircularProgressIndicator());
 }

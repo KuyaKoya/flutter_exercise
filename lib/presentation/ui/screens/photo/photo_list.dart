@@ -9,6 +9,7 @@ import 'package:flutter_exercise/presentation/states/photos/photo_state.dart';
 import 'package:flutter_exercise/presentation/ui/screens/photo/photo_item.dart';
 
 import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
 
 class PhotoList extends StatefulWidget {
   const PhotoList({Key? key}) : super(key: key);
@@ -37,6 +38,10 @@ class _PhotoListState extends State<PhotoList> {
             if (state.error != null) {
               return Text(state.error.toString());
             }
+            if (state.status == PhotoStateStatus.loading) {
+              return const LoadingData();
+            }
+
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

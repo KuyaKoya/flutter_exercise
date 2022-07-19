@@ -7,6 +7,7 @@ import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
 import 'package:flutter_exercise/presentation/states/user/user_event.dart';
 import 'package:flutter_exercise/presentation/states/user/user_state.dart';
 import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
 import 'package:flutter_exercise/routes.dart';
 
 class UserScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   UserBloc get userBloc => context.read<UserBloc>();
+  UserState userState = const UserState.initial();
 
   @override
   void initState() {
@@ -31,9 +33,17 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _onAlbumPressed(context, userState.user),
+        child: const Icon(Icons.photo_album),
+      ),
       appBar: const CustomAppBar(),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (_, state) {
+          userState = state;
+          if (state.status == UserStateStatus.loading) {
+            return const LoadingData();
+          }
           if (state.error != null) {
             return Text(state.error.toString());
           }
@@ -83,7 +93,6 @@ class _UserScreenState extends State<UserScreen> {
                     ],
                   ),
                 ),
-                createPostAlbumCount(context, state.user),
                 Column(
                   children: <Widget>[
                     createInfoTile('Email', state.user?.username ?? ''),
@@ -94,7 +103,7 @@ class _UserScreenState extends State<UserScreen> {
                     const Divider(),
                     createInfoTile('Website', state.user?.website ?? ''),
                   ],
-                )
+                ),
               ],
             ),
           );
@@ -121,34 +130,6 @@ Widget createInfoTile(title, subTitle) {
       ),
     ),
   );
-}
-
-Widget createPostAlbumCount(BuildContext context, UserEntity? user) {
-  return Row(children: <Widget>[
-    Expanded(
-      child: Container(
-        color: Colors.blueAccent.shade200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.photo_album_rounded),
-              title: const Text(
-                'Albums',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white70,
-                ),
-              ),
-              onTap: () => _onAlbumPressed(context, user),
-            ),
-          ],
-        ),
-      ),
-    ),
-  ]);
 }
 
 void _onAlbumPressed(BuildContext context, UserEntity? user) {

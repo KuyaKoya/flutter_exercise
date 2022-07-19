@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/app.dart';
 import 'package:flutter_exercise/presentation/ui/screens/album/album_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/comment/comment_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/photo/photo_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
 import 'package:flutter_exercise/presentation/ui/screens/splash/splash.dart';
-import 'package:flutter_exercise/presentation/ui/screens/user/user_header.dart';
+import 'package:flutter_exercise/presentation/ui/screens/user/user_screen.dart';
 import 'package:flutter_exercise/presentation/ui/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter_exercise/utils/fade_page_route.dart';
 
@@ -43,8 +42,6 @@ class AppNavigator {
     switch (settings.name) {
       case _Paths.splash:
         return FadeRoute(page: const SplashScreen());
-      case _Paths.home:
-        return FadeRoute(page: const MyHomePage());
       case _Paths.welcome:
         return FadeRoute(page: const WelcomeScreen());
       case _Paths.comments:

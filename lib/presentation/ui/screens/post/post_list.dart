@@ -6,6 +6,7 @@ import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 
 import 'package:flutter_exercise/presentation/ui/screens/post/post_item.dart';
 import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
 
 import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
@@ -47,7 +48,10 @@ class _PostListState extends State<PostList> {
               BlocBuilder<PostBloc, PostState>(
                 builder: (_, state) {
                   if (state.status == PostStateStatus.loading) {
-                    return _buildLoading();
+                    return const LoadingData();
+                  }
+                  if (state.error != null) {
+                    return Text(state.error.toString());
                   }
                   return Expanded(
                     child: createList(state.posts),
@@ -68,8 +72,4 @@ Widget createList(List<PostEntity> posts) {
       itemBuilder: (context, index) {
         return PostItem(posts[index]);
       });
-}
-
-Widget _buildLoading() {
-  return const Center(child: CircularProgressIndicator());
 }
