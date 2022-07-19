@@ -37,17 +37,9 @@ void _showSimpleModalDialog(context, PhotoEntity photo) {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Container(
           constraints: const BoxConstraints(maxHeight: 350),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  photo.url,
-                  fit: BoxFit.fill,
-                ),
-              ],
-            ),
+          child: Image.network(
+            photo.url,
+            fit: BoxFit.fill,
           ),
         ),
       );
