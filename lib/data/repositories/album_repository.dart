@@ -1,17 +1,20 @@
+import 'package:injectable/injectable.dart';
+
 import '../../domain/entities/album_entity.dart';
 import '../source/mappers/json_placeholder_api_mapper.dart';
 import '../source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
 
-//Hello
-abstract class IAlbumRepository {
+
+abstract class AlbumRepository {
   Future<List<AlbumEntity>> getAllAlbums();
   Future<List<AlbumEntity>> getAlbumsFromUserId(int? id);
   void setSelectedPost(AlbumEntity album);
   int? get selectedAlbumId;
 }
 
-class AlbumRepository extends IAlbumRepository {
-  AlbumRepository({required this.jsonPlaceHolderAPIService});
+@Singleton(as: AlbumRepository)
+class AlbumRepositoryImpl extends AlbumRepository {
+  AlbumRepositoryImpl({required this.jsonPlaceHolderAPIService});
 
   final JsonPlaceHolderAPIService jsonPlaceHolderAPIService;
 

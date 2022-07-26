@@ -11,7 +11,7 @@ class UserLoadStarted extends UserEvent {
 }
 
 class UserSelectChanged extends UserEvent {
-  final UserEntity? user;
+  final UserEntity user;
 
   const UserSelectChanged({required this.user});
 }

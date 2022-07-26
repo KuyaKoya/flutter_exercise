@@ -134,6 +134,6 @@ Widget createInfoTile(title, subTitle) {
 }
 
 void _onAlbumPressed(BuildContext context, UserEntity? user) {
-  context.read<UserBloc>().add(UserSelectChanged(user: user));
+  user != null ? context.read<UserBloc>().add(UserSelectChanged(user: user)) : null ;
   AppNavigator.push(Routes.albums);
 }

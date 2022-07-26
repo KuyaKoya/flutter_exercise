@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/http.dart';
 
 import '../../../../core/constants.dart';
+import '../../../../core/network/logging.dart';
 import 'models/DTO/album/album.dart';
 import 'models/DTO/comment/comment.dart';
 import 'models/DTO/photo/photo.dart';
@@ -10,8 +12,19 @@ import 'models/DTO/user/user.dart';
 
 part 'json_placeholder_api_service.g.dart';
 
+@module
+abstract class RegisterDio {
+  Dio get dio {
+    final d = Dio();
+    d.interceptors.add(Logging());
+    return d;
+  }
+}
+
+@Singleton()
 @RestApi(baseUrl: jsonPlaceholderAPIUrl)
 abstract class JsonPlaceHolderAPIService {
+  @factoryMethod
   factory JsonPlaceHolderAPIService(Dio dio) = _JsonPlaceHolderAPIService;
 
   @GET('/users')
@@ -24,7 +37,7 @@ abstract class JsonPlaceHolderAPIService {
   });
 
   @GET('/users/{id}')
-  Future<User> getUser(@Path("id") int id);
+  Future<User> getUser(@Path("id") int? id);
 
   @GET('/posts')
   Future<List<Post>> getPosts({

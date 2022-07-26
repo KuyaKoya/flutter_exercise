@@ -1,45 +1,40 @@
+import 'package:injectable/injectable.dart';
+
 import '../../core/usecase.dart';
 import '../../data/repositories/post_repository.dart';
 import '../../data/repositories/user_repository.dart';
 import '../entities/user/user_entity.dart';
 
-abstract class IUserUseCase extends BaseUseCase {
-  IUserUseCase(super.baseRepository);
-  Future<List<UserEntity>> getAllUsers();
-  Future<UserEntity> getUserFromPostId();
-  void setSelectedUser(UserEntity user);
-}
-
-class UserUseCaseImpl extends IUserUseCase {
-  UserUseCaseImpl(super.baseRepository);
-
-  UserRepository get userRepository {
-    return super.baseRepository.userRepository;
-  }
-
-  late final UserRepository _userRepository =
-      super.baseRepository.userRepository;
-  late final PostRepository _postRepository =
-      super.baseRepository.postRepository;
+@Injectable()
+class GetAllUsersUseCase extends NoParamsUseCase<List<UserEntity>> {
+  final UserRepository _userRepository;
+  GetAllUsersUseCase(this._userRepository);
 
   @override
-  Future<List<UserEntity>> getAllUsers() {
+  Future<List<UserEntity>> call() {
     return _userRepository.getAllUsers();
   }
+}
+
+@Injectable()
+class GetUserFromPostIdUseCase extends NoParamsUseCase<UserEntity> {
+  final UserRepository _userRepository;
+  final PostRepository _postRepository;
+  GetUserFromPostIdUseCase(this._postRepository, this._userRepository);
 
   @override
-  Future<UserEntity> getUserFromPostId() {
-    final id = _postRepository.selectedUserId;
-
-    if (id == null) {
-      throw Exception('No user selected');
-    }
-
-    return _userRepository.getUserFromPostId(id);
+  Future<UserEntity> call() {
+    return _userRepository.getUserFromPostId(_postRepository.selectedUserId);
   }
+}
+
+@Injectable()
+class UpdateSelectedUserUseCase extends UseCase<void, UserEntity> {
+  final UserRepository _userRepository;
+  UpdateSelectedUserUseCase(this._userRepository);
 
   @override
-  void setSelectedUser(UserEntity? user) {
-    _userRepository.setCurrentUser(user);
+  Future<void> call(UserEntity params) async {
+    _userRepository.setCurrentUser(params);
   }
 }

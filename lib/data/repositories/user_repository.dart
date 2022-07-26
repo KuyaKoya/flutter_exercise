@@ -1,16 +1,19 @@
+import 'package:injectable/injectable.dart';
+
 import '../source/mappers/json_placeholder_api_mapper.dart';
 import '../source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
 import '../../domain/entities/user/user_entity.dart';
 
-abstract class IUserRepository {
+abstract class UserRepository {
   Future<List<UserEntity>> getAllUsers();
-  Future<UserEntity> getUserFromPostId(int id);
+  Future<UserEntity> getUserFromPostId(int? id);
   void setCurrentUser(UserEntity user);
   int? get currentUserId;
 }
 
-class UserRepository extends IUserRepository {
-  UserRepository({required this.jsonPlaceHolderAPIService});
+@Singleton(as: UserRepository)
+class UserRepositoryImpl extends UserRepository {
+  UserRepositoryImpl({required this.jsonPlaceHolderAPIService});
 
   final JsonPlaceHolderAPIService jsonPlaceHolderAPIService;
   UserEntity? _currentUser;
@@ -30,7 +33,7 @@ class UserRepository extends IUserRepository {
   }
 
   @override
-  Future<UserEntity> getUserFromPostId(int id) async {
+  Future<UserEntity> getUserFromPostId(int? id) async {
     final user = await jsonPlaceHolderAPIService.getUser(id);
     return toUserEntity(user);
   }

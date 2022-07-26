@@ -1,16 +1,19 @@
+import 'package:injectable/injectable.dart';
+
 import '../../domain/entities/post_entity.dart';
 import '../source/mappers/json_placeholder_api_mapper.dart';
 import '../source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
 
-abstract class IPostRepository {
+abstract class PostRepository {
   Future<List<PostEntity>> getAllPosts();
   void setSelectedPost(PostEntity post);
   int? get selectedPostId;
   int? get selectedUserId;
 }
 
-class PostRepository extends IPostRepository {
-  PostRepository({required this.jsonPlaceHolderAPIService});
+@Singleton(as: PostRepository)
+class PostRepositoryImpl extends PostRepository {
+  PostRepositoryImpl({required this.jsonPlaceHolderAPIService});
 
   final JsonPlaceHolderAPIService jsonPlaceHolderAPIService;
   PostEntity? _postEntity;

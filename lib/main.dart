@@ -2,8 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/core/network/logging.dart';
+import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/album/album.dart';
+import 'core/injection.dart';
 import 'core/usecase.dart';
-import 'data/repositories/base_repository.dart';
 import 'data/source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
 import 'presentation/states/album/album_bloc.dart';
 import 'presentation/states/comment/comment_bloc.dart';
@@ -19,49 +20,28 @@ void main() async {
 
   //  * Need to create DioClient class and pass it to the BlocProvider
   //  * as one instance of DioClient from Dio
-  Dio dio = Dio();
-  dio.interceptors.add(Logging());
-
+  configureDependencies();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(
-      MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider<JsonPlaceHolderAPIService>(
-            create: (context) => JsonPlaceHolderAPIService(dio),
-          ),
-          RepositoryProvider<BaseRepository>(
-            create: (context) =>
-                BaseRepository(context.read<JsonPlaceHolderAPIService>()),
-          ),
-          RepositoryProvider<BaseUseCase>(
-            create: (context) => BaseUseCase(context.read<BaseRepository>()),
-          ),
-        ],
-        child: MultiBlocProvider(
+        MultiBlocProvider(
           providers: [
             BlocProvider<PostBloc>(
-              create: (context) => PostBloc(context.read<BaseUseCase>()),
-            ),
+              create: (context) => getIt<PostBloc>()),
             BlocProvider<CommentBloc>(
-              create: (context) => CommentBloc(context.read<BaseUseCase>()),
-            ),
+              create: (context) => getIt<CommentBloc>()),
             BlocProvider<UserBloc>(
-              create: (context) => UserBloc(context.read<BaseUseCase>()),
-            ),
+              create: (context) => getIt<UserBloc>()),
             BlocProvider<AlbumBloc>(
-              create: (context) => AlbumBloc(context.read<BaseUseCase>()),
-            ),
+              create: (context) => getIt<AlbumBloc>()),
             BlocProvider<PhotoBloc>(
-              create: (context) => PhotoBloc(context.read<BaseUseCase>()),
-            ),
+              create: (context) => getIt<PhotoBloc>()),
             BlocProvider<ThemeCubit>(
               create: (context) => ThemeCubit(),
             )
           ],
           child: const MyApp(),
         ),
-      ),
     );
   });
 }

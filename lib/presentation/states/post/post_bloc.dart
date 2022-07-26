@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_exercise/domain/usecases/photo_usecase.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import '../../../core/usecase.dart';
@@ -7,13 +9,12 @@ import '../../../domain/usecases/post_usecase.dart';
 import 'post_event.dart';
 import 'post_state.dart';
 
+@Singleton()
 class PostBloc extends Bloc<PostEvent, PostState> {
-  final BaseUseCase _baseUseCase;
-  PostUseCaseImpl get _postUseCase {
-    return _baseUseCase.postUseCaseImpl;
-  }
+  final GetAllPostsUseCase _getAllPostsUseCase;
+  final UpdateSelectedPostUseCase _updateSelectedPostUseCase;
 
-  PostBloc(this._baseUseCase) : super(const PostState.initial()) {
+  PostBloc(this._getAllPostsUseCase, this._updateSelectedPostUseCase) : super(const PostState.initial()) {
     on<PostLoadStarted>(
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
@@ -28,7 +29,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     try {
       emit(state.asLoading());
 
-      final List<PostEntity> posts = await _postUseCase.getAllPosts();
+      final List<PostEntity> posts = await _getAllPostsUseCase.call();
 
       emit(state.asLoadSuccess(posts));
     } on Exception catch (e) {
@@ -38,7 +39,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   void _onItemSelected(PostSelectChanged event, Emitter<PostState> emit) async {
     try {
-      _postUseCase.setSelectedPost(event.post);
+      _updateSelectedPostUseCase.call(event.post);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
     }
