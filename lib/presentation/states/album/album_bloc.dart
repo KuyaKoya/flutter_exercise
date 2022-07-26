@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/usecases/album_usecase.dart';
+import '../../../core/usecase.dart';
+import '../../../domain/usecases/album_usecase.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import '../../../domain/entities/album_entity.dart';

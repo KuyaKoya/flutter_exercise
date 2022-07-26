@@ -1,8 +1,7 @@
-import 'package:flutter_exercise/data/repositories/post_repository.dart';
-import 'package:flutter_exercise/domain/entities/comment_entity.dart';
-
 import '../../core/usecase.dart';
 import '../../data/repositories/comment_repository.dart';
+import '../../data/repositories/post_repository.dart';
+import '../entities/comment_entity.dart';
 
 abstract class ICommentUseCase extends BaseUseCase {
   ICommentUseCase(super.baseRepository);
@@ -26,6 +25,11 @@ class CommentUseCaseImpl extends ICommentUseCase {
   @override
   Future<List<CommentEntity>> getCommentsFromPostId() {
     final id = _postRepository.selectedPostId;
+
+    if (id == null) {
+      throw Exception('No post selected');
+    }
+
     return _commentRepository.getCommentsFromPostId(id);
   }
 }

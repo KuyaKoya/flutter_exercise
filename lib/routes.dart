@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/presentation/ui/screens/album/album_list.dart';
-import 'package:flutter_exercise/presentation/ui/screens/comment/comment_list.dart';
-import 'package:flutter_exercise/presentation/ui/screens/photo/photo_list.dart';
-import 'package:flutter_exercise/presentation/ui/screens/post/post_list.dart';
-import 'package:flutter_exercise/presentation/ui/screens/splash/splash.dart';
-import 'package:flutter_exercise/presentation/ui/screens/user/user_screen.dart';
-import 'package:flutter_exercise/utils/fade_page_route.dart';
+import 'presentation/ui/screens/album/album_list.dart';
+import 'presentation/ui/screens/comment/comment_list.dart';
+import 'presentation/ui/screens/photo/photo_list.dart';
+import 'presentation/ui/screens/post/post_list.dart';
+import 'presentation/ui/screens/splash/splash.dart';
+import 'presentation/ui/screens/user/user_screen.dart';
+import 'utils/fade_page_route.dart';
 
 enum Routes { splash, welcome, home, posts, comments, users, albums, photos }
 
@@ -17,7 +17,6 @@ class _Paths {
   static const String albums = '/users/albums';
   static const String photos = '/albums/photos';
 
-// TODO(Anthony): Will refactor the welcome screen
   static const Map<Routes, String> _pathMap = {
     Routes.splash: _Paths.splash,
     Routes.posts: _Paths.posts,

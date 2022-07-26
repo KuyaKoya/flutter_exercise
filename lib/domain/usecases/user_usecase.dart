@@ -1,7 +1,7 @@
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/data/repositories/post_repository.dart';
-import 'package:flutter_exercise/data/repositories/user_repository.dart';
-import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
+import '../../core/usecase.dart';
+import '../../data/repositories/post_repository.dart';
+import '../../data/repositories/user_repository.dart';
+import '../entities/user/user_entity.dart';
 
 abstract class IUserUseCase extends BaseUseCase {
   IUserUseCase(super.baseRepository);
@@ -30,6 +30,11 @@ class UserUseCaseImpl extends IUserUseCase {
   @override
   Future<UserEntity> getUserFromPostId() {
     final id = _postRepository.selectedUserId;
+
+    if (id == null) {
+      throw Exception('No user selected');
+    }
+
     return _userRepository.getUserFromPostId(id);
   }
 

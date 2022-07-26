@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/domain/entities/comment_entity.dart';
+import '../../../domain/entities/comment_entity.dart';
 
 enum CommentStateStatus {
   initial,

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/usecases/post_usecase.dart';
 import 'package:stream_transform/stream_transform.dart';
 
+import '../../../core/usecase.dart';
 import '../../../domain/entities/post_entity.dart';
+import '../../../domain/usecases/post_usecase.dart';
 import 'post_event.dart';
 import 'post_state.dart';
 

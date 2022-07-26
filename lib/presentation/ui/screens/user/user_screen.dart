@@ -1,14 +1,15 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
-import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
-import 'package:flutter_exercise/presentation/states/user/user_event.dart';
-import 'package:flutter_exercise/presentation/states/user/user_state.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
-import 'package:flutter_exercise/routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../domain/entities/user/user_entity.dart';
+import '../../../../routes.dart';
+import '../../../states/user/user_bloc.dart';
+import '../../../states/user/user_event.dart';
+import '../../../states/user/user_state.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);

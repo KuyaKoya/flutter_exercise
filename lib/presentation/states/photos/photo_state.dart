@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
+import '../../../domain/entities/photo_entity.dart';
 
 enum PhotoStateStatus {
   initial,
