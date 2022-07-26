@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_exercise/domain/entities/post_entity.dart';
-import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
-import 'package:flutter_exercise/presentation/states/post/post_event.dart';
-import 'package:flutter_exercise/routes.dart';
+import '../../../../domain/entities/post_entity.dart';
+import '../../../states/post/post_bloc.dart';
+import '../../../states/post/post_event.dart';
+import '../../../../routes.dart';
 
 class PostItem extends StatefulWidget {
   const PostItem(this.post, {Key? key}) : super(key: key);

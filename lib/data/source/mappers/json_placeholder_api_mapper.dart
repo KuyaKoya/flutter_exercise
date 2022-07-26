@@ -1,15 +1,14 @@
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/photo/photo.dart';
-import 'package:flutter_exercise/domain/entities/comment_entity.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
-import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
+import '../remote/jsonPlaceholderAPI/models/DTO/photo/photo.dart';
+import '../../../domain/entities/comment_entity.dart';
+import '../../../domain/entities/photo_entity.dart';
+import '../../../domain/entities/user/user_entity.dart';
 
 import '../../../domain/entities/post_entity.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/album/album.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/comment/comment.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/post/post.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/DTO/user/user.dart';
-import 'package:flutter_exercise/domain/entities/album_entity.dart';
-import 'package:flutter_exercise/domain/entities/post_entity.dart';
+import '../remote/jsonPlaceholderAPI/models/DTO/album/album.dart';
+import '../remote/jsonPlaceholderAPI/models/DTO/comment/comment.dart';
+import '../remote/jsonPlaceholderAPI/models/DTO/post/post.dart';
+import '../remote/jsonPlaceholderAPI/models/DTO/user/user.dart';
+import '../../../domain/entities/album_entity.dart';
 
 List<PostEntity> toPostEntityList(List<User> users, List<Post> posts) {
   List<PostEntity> postList = [];

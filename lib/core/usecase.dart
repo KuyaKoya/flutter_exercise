@@ -1,10 +1,9 @@
-import 'package:flutter_exercise/data/repositories/base_repository.dart';
-import 'package:flutter_exercise/domain/usecases/comment_usecase.dart';
-import 'package:flutter_exercise/domain/usecases/album_usecase.dart';
-import 'package:flutter_exercise/domain/usecases/photo_usecase.dart';
-import 'package:flutter_exercise/domain/usecases/user_usecase.dart';
-
+import '../data/repositories/base_repository.dart';
+import '../domain/usecases/album_usecase.dart';
+import '../domain/usecases/comment_usecase.dart';
+import '../domain/usecases/photo_usecase.dart';
 import '../domain/usecases/post_usecase.dart';
+import '../domain/usecases/user_usecase.dart';
 
 abstract class IBaseUseCase {
   abstract final BaseRepository baseRepository;

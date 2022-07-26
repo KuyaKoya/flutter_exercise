@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
+import '../../../../domain/entities/photo_entity.dart';
 
 class PhotoItem extends StatefulWidget {
   const PhotoItem(this.photo, {Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/usecases/comment_usecase.dart';
 import 'package:stream_transform/stream_transform.dart';
 
+import '../../../core/usecase.dart';
 import '../../../domain/entities/comment_entity.dart';
+import '../../../domain/usecases/comment_usecase.dart';
 import 'comment_event.dart';
 import 'comment_state.dart';
 

@@ -2,16 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
-
-import 'package:flutter_exercise/presentation/ui/screens/post/post_item.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
 
 import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
 import '../../../states/post/post_event.dart';
 import '../../../states/post/post_state.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
+import 'post_item.dart';
 
 class PostList extends StatefulWidget {
   const PostList({Key? key}) : super(key: key);

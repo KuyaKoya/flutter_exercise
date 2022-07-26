@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
-import 'package:flutter_exercise/domain/usecases/photo_usecase.dart';
+import '../../../core/usecase.dart';
+import '../../../domain/entities/photo_entity.dart';
+import '../../../domain/usecases/photo_usecase.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import 'photo_event.dart';

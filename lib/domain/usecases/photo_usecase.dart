@@ -1,6 +1,6 @@
-import 'package:flutter_exercise/data/repositories/album_repository.dart';
-import 'package:flutter_exercise/data/repositories/photo_repository.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
+import '../../data/repositories/album_repository.dart';
+import '../../data/repositories/photo_repository.dart';
+import '../entities/photo_entity.dart';
 
 import '../../core/usecase.dart';
 

@@ -1,7 +1,6 @@
-import 'package:flutter_exercise/data/repositories/post_repository.dart';
-import 'package:flutter_exercise/domain/entities/post_entity.dart';
-
 import '../../core/usecase.dart';
+import '../../data/repositories/post_repository.dart';
+import '../entities/post_entity.dart';
 
 abstract class IPostUseCase extends BaseUseCase {
   IPostUseCase(super.baseRepository);

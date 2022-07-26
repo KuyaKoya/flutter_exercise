@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_exercise/presentation/ui/screens/album/album_item.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
+import 'album_item.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
 
 import '../../../../domain/entities/album_entity.dart';
 import '../../../states/album/album_bloc.dart';

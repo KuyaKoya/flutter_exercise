@@ -1,9 +1,9 @@
-import 'package:flutter_exercise/data/repositories/album_repository.dart';
-import 'package:flutter_exercise/data/repositories/comment_repository.dart';
-import 'package:flutter_exercise/data/repositories/photo_repository.dart';
-import 'package:flutter_exercise/data/repositories/post_repository.dart';
-import 'package:flutter_exercise/data/repositories/user_repository.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
+import 'album_repository.dart';
+import 'comment_repository.dart';
+import 'photo_repository.dart';
+import 'post_repository.dart';
+import 'user_repository.dart';
+import '../source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
 
 abstract class IBaseRepository {
   PostRepository get postRepository;
@@ -14,24 +14,23 @@ abstract class IBaseRepository {
 }
 
 class BaseRepository extends IBaseRepository {
-  BaseRepository(this.jsonPlaceHolderAPI);
-
-  final JsonPlaceHolderAPI jsonPlaceHolderAPI;
+  BaseRepository(this.jsonPlaceHolderAPIService);
+  final JsonPlaceHolderAPIService jsonPlaceHolderAPIService;
 
   late final PostRepository _postRepository =
-      PostRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+      PostRepository(jsonPlaceHolderAPIService: jsonPlaceHolderAPIService);
 
   late final CommentRepository _commentRepository =
-      CommentRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+      CommentRepository(jsonPlaceHolderAPIService: jsonPlaceHolderAPIService);
 
   late final AlbumRepository _albumRepository =
-      AlbumRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+      AlbumRepository(jsonPlaceHolderAPIService: jsonPlaceHolderAPIService);
 
   late final UserRepository _userRepository =
-      UserRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+      UserRepository(jsonPlaceHolderAPIService: jsonPlaceHolderAPIService);
 
   late final PhotoRepository _photoRepository =
-      PhotoRepository(jsonPlaceHolderAPI: jsonPlaceHolderAPI);
+      PhotoRepository(jsonPlaceHolderAPIService: jsonPlaceHolderAPIService);
 
   @override
   PostRepository get postRepository => _postRepository;

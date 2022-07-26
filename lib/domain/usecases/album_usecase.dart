@@ -1,5 +1,5 @@
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/entities/album_entity.dart';
+import '../../core/usecase.dart';
+import '../entities/album_entity.dart';
 
 abstract class IAlbumUseCase extends BaseUseCase {
   IAlbumUseCase(super.baseRepository);

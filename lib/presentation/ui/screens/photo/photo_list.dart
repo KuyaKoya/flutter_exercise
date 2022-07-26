@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
-import 'package:flutter_exercise/presentation/states/photos/photo_bloc.dart';
-import 'package:flutter_exercise/presentation/states/photos/photo_event.dart';
-import 'package:flutter_exercise/presentation/states/photos/photo_state.dart';
-import 'package:flutter_exercise/presentation/ui/screens/photo/photo_item.dart';
+import '../../../../domain/entities/photo_entity.dart';
+import '../../../states/photos/photo_bloc.dart';
+import '../../../states/photos/photo_event.dart';
+import '../../../states/photos/photo_state.dart';
+import 'photo_item.dart';
 
-import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
 
 class PhotoList extends StatefulWidget {
   const PhotoList({Key? key}) : super(key: key);

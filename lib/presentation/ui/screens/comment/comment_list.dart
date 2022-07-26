@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_exercise/presentation/states/comment/comment_bloc.dart';
-import 'package:flutter_exercise/presentation/states/comment/comment_state.dart';
-import 'package:flutter_exercise/presentation/ui/screens/comment/comment_item.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
-import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
+
 import '../../../../domain/entities/comment_entity.dart';
+import '../../../states/comment/comment_bloc.dart';
 import '../../../states/comment/comment_event.dart';
+import '../../../states/comment/comment_state.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
+import 'comment_item.dart';
 
 class CommentList extends StatefulWidget {
   const CommentList({Key? key}) : super(key: key);

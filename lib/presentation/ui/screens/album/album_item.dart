@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_exercise/domain/entities/album_entity.dart';
-import 'package:flutter_exercise/presentation/states/album/album_bloc.dart';
-import 'package:flutter_exercise/presentation/states/album/album_event.dart';
-import 'package:flutter_exercise/routes.dart';
+
+import '../../../../domain/entities/album_entity.dart';
+import '../../../../routes.dart';
+import '../../../states/album/album_bloc.dart';
+import '../../../states/album/album_event.dart';
 
 class AlbumItem extends StatefulWidget {
   const AlbumItem(this.album, {Key? key}) : super(key: key);
