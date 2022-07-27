@@ -7,7 +7,7 @@ import '../../domain/entities/user/user_entity.dart';
 abstract class UserRepository {
   Future<List<UserEntity>> getAllUsers();
   Future<UserEntity> getUserFromPostId(int? id);
-  void setCurrentUser(UserEntity user);
+  void setCurrentUser(UserEntity? user);
   int? get currentUserId;
 }
 

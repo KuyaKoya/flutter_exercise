@@ -34,7 +34,7 @@ class UpdateSelectedUserUseCase extends UseCase<void, UserEntity> {
   UpdateSelectedUserUseCase(this._userRepository);
 
   @override
-  Future<void> call(UserEntity params) async {
+  Future<void> call(UserEntity? params) async {
     _userRepository.setCurrentUser(params);
   }
 }

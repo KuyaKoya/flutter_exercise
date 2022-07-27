@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'album_item.dart';
-import '../../widgets/appbar.dart';
-import '../../widgets/circular_progress_bar.dart';
+import 'package:flutter_exercise/presentation/ui/screens/album/album_item.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import '../../../../domain/entities/album_entity.dart';
 import '../../../states/album/album_bloc.dart';
@@ -32,26 +33,28 @@ class _AlbumListState extends State<AlbumList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(),
-      body: Center(
-        child: BlocBuilder<AlbumBloc, AlbumState>(
-          builder: (_, state) {
-            if (state.status == AlbumStateStatus.loading) {
-              return const LoadingData();
-            }
-            if (state.error != null) {
-              return Text(state.error.toString());
-            }
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Expanded(child: createList(albumBloc.state.albums)),
-                ],
-              ),
-            );
-          },
+    return SafeArea(
+      child: PlatformScaffold(
+        appBar: CustomAppBar().appBar(false),
+        body: Center(
+          child: BlocBuilder<AlbumBloc, AlbumState>(
+            builder: (_, state) {
+              if (state.status == AlbumStateStatus.loading) {
+                return const LoadingData();
+              }
+              if (state.error != null) {
+                return Text(state.error.toString());
+              }
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Expanded(child: createList(albumBloc.state.albums)),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

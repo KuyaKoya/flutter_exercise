@@ -2,6 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
+
+import 'package:flutter_exercise/presentation/ui/screens/post/post_item.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
+import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
@@ -37,8 +43,8 @@ class _PostListState extends State<PostList> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: const CustomAppBar(),
+      child: PlatformScaffold(
+        appBar: CustomAppBar().appBar(true),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
