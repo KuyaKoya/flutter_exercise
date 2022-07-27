@@ -1,22 +1,30 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_exercise/presentation/commons/routes.dart';
+import 'package:flutter_exercise/presentation/res/styles/styles.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
-
-  @override
-  Size get preferredSize => const Size.fromHeight(60);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 0.0, // for elevation
-      titleSpacing: 0.0, // if you want remove title spacing with back button
+class CustomAppBar {
+  PlatformAppBar appBar(bool postScreen) {
+    return PlatformAppBar(
       title: const Text(
         'Fleeter',
         style: TextStyle(fontWeight: FontWeight.bold),
+        textAlign: TextAlign.center,
       ),
-      backgroundColor: Colors.blue,
-      centerTitle: true,
+      trailingActions: [
+        if (!postScreen)
+          PlatformIconButton(
+            onPressed: () => AppNavigator.replaceWith(Routes.posts),
+            materialIcon: const Icon(Icons.home),
+            cupertinoIcon: const Icon(
+              CupertinoIcons.home,
+              size: 28.0,
+            ),
+          ),
+      ],
+      material: (_, __) => materialBarData,
+      cupertino: (_, __) => cupertinoBarData,
     );
   }
 }

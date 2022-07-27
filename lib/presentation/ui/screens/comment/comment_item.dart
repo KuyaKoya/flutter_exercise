@@ -14,49 +14,57 @@ class CommentItem extends StatefulWidget {
 class _CommentItemState extends State<CommentItem> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: Theme.of(context).colorScheme.outline),
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AutoSizeText(
-                    widget.comment.email,
-                    style: const TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Color.fromARGB(255, 22, 97, 158),
-                        fontSize: 14.0),
-                    maxLines: 4,
-                  ),
-                  AutoSizeText(
-                    widget.comment.name,
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20.0),
-                  ),
-                  AutoSizeText(
-                    widget.comment.body,
-                    style: CommentItem._textStyle,
-                    maxLines: 4,
-                  ),
-                ],
-              ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24.0, 8.0, 24.0, 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
             ),
           ],
         ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      widget.comment.email,
+                      style: const TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Color.fromARGB(255, 22, 97, 158),
+                          fontSize: 14.0),
+                      maxLines: 4,
+                    ),
+                    AutoSizeText(
+                      widget.comment.name,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20.0),
+                    ),
+                    AutoSizeText(
+                      widget.comment.body,
+                      style: CommentItem._textStyle,
+                      maxLines: 4,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-    ));
+    );
   }
 }

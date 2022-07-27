@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/domain/entities/post_entity.dart';
 import 'package:flutter_exercise/presentation/states/post/post_bloc.dart';
 import 'package:flutter_exercise/presentation/states/post/post_event.dart';
-import 'package:flutter_exercise/routes.dart';
+import 'package:flutter_exercise/presentation/commons/routes.dart';
 
 class PostItem extends StatefulWidget {
   const PostItem(this.post, {Key? key}) : super(key: key);
@@ -21,8 +21,18 @@ class _PostItemState extends State<PostItem> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(24.0, 8.0, 24.0, 8.0),
-      child: Card(
-        elevation: 6.0,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
@@ -63,6 +73,14 @@ class _PostItemState extends State<PostItem> {
                       Padding(
                           padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0, 0.0),
                           child: OutlinedButton(
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ),
                               onPressed: () async {
                                 _onCommentButtonPressed(context, widget.post);
                               },
