@@ -71,20 +71,25 @@ class _PostItemState extends State<PostItem> {
                         ),
                       ),
                       Padding(
-                          padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0, 0.0),
-                          child: OutlinedButton(
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
+                        padding: const EdgeInsets.fromLTRB(6.0, 0.0, 0, 0.0),
+                        child: OutlinedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              onPressed: () async {
-                                _onCommentButtonPressed(context, widget.post);
-                              },
-                              child: const Text("COMMENTS"))),
+                            ),
+                          ),
+                          onPressed: () async {
+                            _onCommentButtonPressed(context, widget.post);
+                          },
+                          child: const AutoSizeText(
+                            "COMMENTS",
+                            maxLines: 1,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

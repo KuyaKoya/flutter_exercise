@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exercise/presentation/commons/routes.dart';
@@ -7,10 +8,11 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 class CustomAppBar {
   PlatformAppBar appBar(bool postScreen) {
     return PlatformAppBar(
-      title: const Text(
+      title: const AutoSizeText(
         'Fleeter',
         style: TextStyle(fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
+        maxLines: 1,
       ),
       trailingActions: [
         if (!postScreen)

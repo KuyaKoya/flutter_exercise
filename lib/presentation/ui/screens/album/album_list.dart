@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/presentation/ui/screens/album/album_item.dart';
@@ -43,7 +44,7 @@ class _AlbumListState extends State<AlbumList> {
                 return const LoadingData();
               }
               if (state.error != null) {
-                return Text(state.error.toString());
+                return AutoSizeText(state.error.toString());
               }
               return Padding(
                 padding: const EdgeInsets.all(8.0),

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
@@ -43,7 +44,7 @@ class _UserScreenState extends State<UserScreen> {
               return const LoadingData();
             }
             if (state.error != null) {
-              return Text(state.error.toString());
+              return AutoSizeText(state.error.toString());
             }
 
             return Center(
@@ -80,13 +81,14 @@ class _UserScreenState extends State<UserScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        AutoSizeText(
                           state.user?.username ?? '',
                           style: const TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
+                          maxLines: 1,
                         ),
                       ],
                     ),
@@ -128,19 +130,21 @@ class _UserScreenState extends State<UserScreen> {
 
 Widget createInfoTile(title, subTitle) {
   return ListTile(
-    title: Text(
+    title: AutoSizeText(
       title,
       style: const TextStyle(
         color: Colors.blue,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
+      maxLines: 2,
     ),
-    subtitle: Text(
+    subtitle: AutoSizeText(
       subTitle,
       style: const TextStyle(
         fontSize: 18,
       ),
+      maxLines: 1,
     ),
   );
 }
