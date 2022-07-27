@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
 import 'package:flutter_exercise/presentation/states/user/user_bloc.dart';
 import 'package:flutter_exercise/presentation/states/user/user_event.dart';

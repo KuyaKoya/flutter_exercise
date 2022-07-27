@@ -1,27 +1,27 @@
-import 'package:flutter_exercise/data/repositories/post_repository.dart';
-import 'package:flutter_exercise/domain/entities/post_entity.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../core/usecase.dart';
+import '../../data/repositories/post_repository.dart';
+import '../entities/post_entity.dart';
 
-abstract class IPostUseCase extends BaseUseCase {
-  IPostUseCase(super.baseRepository);
-  Future<List<PostEntity>> getAllPosts();
-  void setSelectedPost(PostEntity post);
-}
-
-class PostUseCaseImpl extends IPostUseCase {
-  PostUseCaseImpl(super.baseRepository);
-
-  late final PostRepository _postRepository =
-      super.baseRepository.postRepository;
+@Injectable()
+class GetAllPostsUseCase extends NoParamsUseCase<List<PostEntity>> {
+  final PostRepository _postRepository;
+  GetAllPostsUseCase(this._postRepository);
 
   @override
-  Future<List<PostEntity>> getAllPosts() {
+  Future<List<PostEntity>> call() {
     return _postRepository.getAllPosts();
   }
+}
+
+@Injectable()
+class UpdateSelectedPostUseCase extends UseCase<void, PostEntity> {
+  final PostRepository _postRepository;
+  UpdateSelectedPostUseCase(this._postRepository);
 
   @override
-  void setSelectedPost(PostEntity post) {
-    _postRepository.setSelectedPost(post);
+  Future<void> call(PostEntity params) async {
+    _postRepository.setSelectedPost(params);
   }
 }

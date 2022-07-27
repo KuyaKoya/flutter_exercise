@@ -1,18 +1,20 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
-import 'package:flutter_exercise/domain/usecases/user_usecase.dart';
-import 'package:flutter_exercise/presentation/states/user/user_event.dart';
-import 'package:flutter_exercise/presentation/states/user/user_state.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stream_transform/stream_transform.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
-  final BaseUseCase _baseUseCase;
-  UserUseCaseImpl get _userUseCase {
-    return _baseUseCase.userUseCaseImpl;
-  }
+import '../../../core/usecase.dart';
+import '../../../domain/entities/user/user_entity.dart';
+import '../../../domain/usecases/user_usecase.dart';
+import 'user_event.dart';
+import 'user_state.dart';
 
-  UserBloc(this._baseUseCase) : super(const UserState.initial()) {
+@Singleton()
+class UserBloc extends Bloc<UserEvent, UserState> {
+  final GetAllUsersUseCase _getAllUsersUseCase;
+  final GetUserFromPostIdUseCase _getUserFromPostIdUseCase;
+  final UpdateSelectedUserUseCase _updateSelectedUserUseCase;
+
+  UserBloc(this._getAllUsersUseCase, this._getUserFromPostIdUseCase, this._updateSelectedUserUseCase) : super(const UserState.initial()) {
     on<UserLoadStarted>(
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
@@ -27,7 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       emit(state.asLoading());
 
-      final UserEntity user = await _userUseCase.getUserFromPostId();
+      final UserEntity user = await _getUserFromPostIdUseCase.call();
 
       emit(state.asLoadSuccess(user));
     } on Exception catch (e) {
@@ -37,7 +39,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   void _onItemSelected(UserSelectChanged event, Emitter<UserState> emit) async {
     try {
-      _userUseCase.setSelectedUser(event.user);
+      _updateSelectedUserUseCase.call(event.user);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
     }

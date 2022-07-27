@@ -13,6 +13,9 @@ import '../../../../domain/entities/post_entity.dart';
 import '../../../states/post/post_bloc.dart';
 import '../../../states/post/post_event.dart';
 import '../../../states/post/post_state.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
+import 'post_item.dart';
 
 class PostList extends StatefulWidget {
   const PostList({Key? key}) : super(key: key);

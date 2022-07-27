@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/domain/entities/post_entity.dart';
+import '../../../domain/entities/post_entity.dart';
 
 abstract class PostEvent {
   const PostEvent();

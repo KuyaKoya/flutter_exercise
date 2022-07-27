@@ -1,41 +1,15 @@
-import 'package:flutter_exercise/data/repositories/base_repository.dart';
-import 'package:flutter_exercise/domain/usecases/comment_usecase.dart';
-import 'package:flutter_exercise/domain/usecases/album_usecase.dart';
-import 'package:flutter_exercise/domain/usecases/photo_usecase.dart';
-import 'package:flutter_exercise/domain/usecases/user_usecase.dart';
-
-import '../domain/usecases/post_usecase.dart';
-
-abstract class IBaseUseCase {
-  abstract final BaseRepository baseRepository;
-  PostUseCaseImpl get postUseCaseImpl;
-  CommentUseCaseImpl get commentUseCaseImpl;
-  AlbumUseCaseImpl get albumUseCaseImpl;
-  UserUseCaseImpl get userUseCaseImpl;
-  PhotoUseCaseImpl get photoUseCaseImpl;
+abstract class BaseUseCase<T> {
+  const BaseUseCase();
 }
 
-class BaseUseCase extends IBaseUseCase {
-  @override
-  final BaseRepository baseRepository;
+abstract class UseCase<T, P> extends BaseUseCase<T> {
+  const UseCase() : super();
 
-  BaseUseCase(this.baseRepository);
+  Future<T> call(P params);
+}
 
-  @override
-  PostUseCaseImpl get postUseCaseImpl => PostUseCaseImpl(baseRepository);
+abstract class NoParamsUseCase<T> extends BaseUseCase<T> {
+  const NoParamsUseCase() : super();
 
-  @override
-  CommentUseCaseImpl get commentUseCaseImpl =>
-      CommentUseCaseImpl(baseRepository);
-
-  @override
-  AlbumUseCaseImpl get albumUseCaseImpl {
-    return AlbumUseCaseImpl(baseRepository);
-  }
-
-  @override
-  UserUseCaseImpl get userUseCaseImpl => UserUseCaseImpl(baseRepository);
-
-  @override
-  PhotoUseCaseImpl get photoUseCaseImpl => PhotoUseCaseImpl(baseRepository);
+  Future<T> call();
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/domain/entities/album_entity.dart';
+import '../../../domain/entities/album_entity.dart';
 
 enum AlbumStateStatus {
   initial,

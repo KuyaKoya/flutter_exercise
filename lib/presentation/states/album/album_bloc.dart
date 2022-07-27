@@ -1,19 +1,20 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_exercise/core/usecase.dart';
-import 'package:flutter_exercise/domain/usecases/album_usecase.dart';
+import 'package:injectable/injectable.dart';
+import '../../../core/usecase.dart';
+import '../../../domain/usecases/album_usecase.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 import '../../../domain/entities/album_entity.dart';
 import 'album_event.dart';
 import 'album_state.dart';
 
+@Singleton()
 class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
-  final BaseUseCase _baseUseCase;
-  AlbumUseCaseImpl get _albumUseCase {
-    return _baseUseCase.albumUseCaseImpl;
-  }
+  final GetAllAlbumsUseCase _getAllAlbumsUseCase;
+  final GetAlbumsFromUserIDUseCase _getAlbumsFromUserIDUseCase;
+  final UpdateSelectedAlbumUseCase _updateSelectedAlbumUseCase;
 
-  AlbumBloc(this._baseUseCase) : super(const AlbumState.initial()) {
+  AlbumBloc(this._getAlbumsFromUserIDUseCase, this._getAllAlbumsUseCase, this._updateSelectedAlbumUseCase) : super(const AlbumState.initial()) {
     on<AlbumLoadStarted>(
       _onLoadStarted,
       transformer: (events, mapper) => events.switchMap(mapper),
@@ -28,7 +29,7 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
     try {
       emit(state.asLoading());
 
-      final List<AlbumEntity> album = await _albumUseCase.getAlbumsFromUserId();
+      final List<AlbumEntity> album = await _getAlbumsFromUserIDUseCase.call();
 
       emit(state.asLoadSuccess(album));
     } on Exception catch (e) {
@@ -39,7 +40,7 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumState> {
   void _onItemSelected(
       AlbumSelectChanged event, Emitter<AlbumState> emit) async {
     try {
-      _albumUseCase.setSelectedPost(event.album);
+      _updateSelectedAlbumUseCase.call(event.album);
     } on Exception catch (e) {
       emit(state.asLoadFailure(e));
     }

@@ -1,31 +1,30 @@
-import 'package:flutter_exercise/data/repositories/album_repository.dart';
-import 'package:flutter_exercise/data/repositories/photo_repository.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../data/repositories/album_repository.dart';
+import '../../data/repositories/photo_repository.dart';
+import '../entities/photo_entity.dart';
 
 import '../../core/usecase.dart';
 
-abstract class IPhotoUseCase extends BaseUseCase {
-  IPhotoUseCase(super.baseRepository);
-  Future<List<PhotoEntity>> getAllPhotos();
-  Future<List<PhotoEntity>> getPhotosFromIds();
+@Injectable()
+class GetAllPhotosUseCase extends NoParamsUseCase<List<PhotoEntity>> {
+  final PhotoRepository _photoRepository;
+  GetAllPhotosUseCase(this._photoRepository);
+
+  @override
+  Future<List<PhotoEntity>> call() {
+    return _photoRepository.getAllPhotos();
+  }
 }
 
-class PhotoUseCaseImpl extends IPhotoUseCase {
-  PhotoUseCaseImpl(super.baseRepository);
-
-  late final PhotoRepository _photoRepository =
-      super.baseRepository.photoRepository;
-  late final AlbumRepository _albumRepository =
-      super.baseRepository.albumRepository;
-
+@Injectable()
+class GetPhotosFromAlbumIDUseCase extends NoParamsUseCase<List<PhotoEntity>> {
+  final AlbumRepository _albumRepository;
+  final PhotoRepository _photoRepository;
+  GetPhotosFromAlbumIDUseCase(this._albumRepository, this._photoRepository);
+  
   @override
-  Future<List<PhotoEntity>> getPhotosFromIds() {
-    final albumId = _albumRepository.selectedAlbumId;
-    return _photoRepository.getPhotosFromIds(albumId);
-  }
-
-  @override
-  Future<List<PhotoEntity>> getAllPhotos() {
-    return _photoRepository.getAllPhotos();
+  Future<List<PhotoEntity>> call() {
+    return _photoRepository.getPhotosFromIds(_albumRepository.selectedAlbumId);
   }
 }

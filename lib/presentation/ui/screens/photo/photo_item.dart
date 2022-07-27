@@ -19,8 +19,17 @@ class _PhotoItemState extends State<PhotoItem> {
         onTap: () => _showSimpleModalDialog(context, widget.photo),
         child: Hero(
           tag: 'ImageTag-${widget.photo.id}',
-          child: Card(
-            elevation: 6.0,
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0.0, 1.0), //(x,y)
+                  blurRadius: 6.0,
+                ),
+              ],
+            ),
             child: Image.network(
               widget.photo.thumbnailUrl,
               fit: BoxFit.fill,

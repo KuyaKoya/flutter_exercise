@@ -1,29 +1,29 @@
-import 'package:flutter_exercise/data/source/mappers/json_placeholder_api_mapper.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/queryparams/photo_query_params.dart';
-import 'package:flutter_exercise/domain/entities/photo_entity.dart';
+import 'package:injectable/injectable.dart';
 
-abstract class IPhotoRepository {
+import '../source/mappers/json_placeholder_api_mapper.dart';
+import '../source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
+import '../../domain/entities/photo_entity.dart';
+
+abstract class PhotoRepository {
   Future<List<PhotoEntity>> getAllPhotos();
-  Future<List<PhotoEntity>> getPhotosFromIds(int albumId);
+  Future<List<PhotoEntity>> getPhotosFromIds(int? albumId);
 }
 
-class PhotoRepository extends IPhotoRepository {
-  PhotoRepository({required this.jsonPlaceHolderAPI});
-  final JsonPlaceHolderAPI jsonPlaceHolderAPI;
+@Singleton(as: PhotoRepository)
+class PhotoRepositoryImpl extends PhotoRepository {
+  PhotoRepositoryImpl({required this.jsonPlaceHolderAPIService});
+  final JsonPlaceHolderAPIService jsonPlaceHolderAPIService;
 
   @override
   Future<List<PhotoEntity>> getAllPhotos() async {
-    final photoList =
-        await jsonPlaceHolderAPI.createPhotoRequest().getPhotoList();
+    final photoList = await jsonPlaceHolderAPIService.getPhotos();
     return toPhotoEntity(photoList);
   }
 
   @override
   Future<List<PhotoEntity>> getPhotosFromIds(int? albumId) async {
-    final photoList = await jsonPlaceHolderAPI
-        .createPhotoRequest(PhotoQueryParams(albumId: albumId))
-        .getPhotoList();
+    final photoList =
+        await jsonPlaceHolderAPIService.getPhotos(albumId: albumId);
     return toPhotoEntity(photoList);
   }
 }

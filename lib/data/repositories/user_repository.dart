@@ -1,24 +1,26 @@
-import 'package:flutter_exercise/data/source/mappers/json_placeholder_api_mapper.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/json_placeholder_api.dart';
-import 'package:flutter_exercise/data/source/remote/jsonPlaceholderAPI/models/queryparams/user_query_params.dart';
-import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
+import 'package:injectable/injectable.dart';
 
-abstract class IUserRepository {
+import '../source/mappers/json_placeholder_api_mapper.dart';
+import '../source/remote/jsonPlaceholderAPI/json_placeholder_api_service.dart';
+import '../../domain/entities/user/user_entity.dart';
+
+abstract class UserRepository {
   Future<List<UserEntity>> getAllUsers();
-  Future<UserEntity> getUserFromPostId(int id);
-  void setCurrentUser(UserEntity user);
+  Future<UserEntity> getUserFromPostId(int? id);
+  void setCurrentUser(UserEntity? user);
   int? get currentUserId;
 }
 
-class UserRepository extends IUserRepository {
-  UserRepository({required this.jsonPlaceHolderAPI});
+@Singleton(as: UserRepository)
+class UserRepositoryImpl extends UserRepository {
+  UserRepositoryImpl({required this.jsonPlaceHolderAPIService});
 
-  final JsonPlaceHolderAPI jsonPlaceHolderAPI;
+  final JsonPlaceHolderAPIService jsonPlaceHolderAPIService;
   UserEntity? _currentUser;
 
   @override
   Future<List<UserEntity>> getAllUsers() async {
-    final userList = await jsonPlaceHolderAPI.createUserRequest().getUserList();
+    final userList = await jsonPlaceHolderAPIService.getUsers();
     return toUserEntityList(userList);
   }
 
@@ -32,9 +34,7 @@ class UserRepository extends IUserRepository {
 
   @override
   Future<UserEntity> getUserFromPostId(int? id) async {
-    final userList = await jsonPlaceHolderAPI
-        .createUserRequest(UserQueryParameters(id: id))
-        .getUserList();
-    return toUserEntity(userList.first);
+    final user = await jsonPlaceHolderAPIService.getUser(id);
+    return toUserEntity(user);
   }
 }

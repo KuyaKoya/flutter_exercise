@@ -1,4 +1,4 @@
-import 'package:flutter_exercise/domain/entities/user/user_entity.dart';
+import '../../../domain/entities/user/user_entity.dart';
 
 enum UserStateStatus {
   initial,

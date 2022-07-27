@@ -9,7 +9,12 @@ import 'package:flutter_exercise/presentation/ui/widgets/appbar.dart';
 import 'package:flutter_exercise/presentation/ui/widgets/circular_progress_bar.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import '../../../../domain/entities/comment_entity.dart';
+import '../../../states/comment/comment_bloc.dart';
 import '../../../states/comment/comment_event.dart';
+import '../../../states/comment/comment_state.dart';
+import '../../widgets/appbar.dart';
+import '../../widgets/circular_progress_bar.dart';
+import 'comment_item.dart';
 
 class CommentList extends StatefulWidget {
   const CommentList({Key? key}) : super(key: key);

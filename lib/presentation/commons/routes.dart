@@ -17,7 +17,6 @@ class _Paths {
   static const String albums = '/users/albums';
   static const String photos = '/albums/photos';
 
-// TODO(Anthony): Will refactor the welcome screen
   static const Map<Routes, String> _pathMap = {
     Routes.splash: _Paths.splash,
     Routes.posts: _Paths.posts,
