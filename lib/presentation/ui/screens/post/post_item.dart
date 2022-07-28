@@ -50,10 +50,23 @@ class _PostItemState extends State<PostItem> {
                         onTap: () async {
                           _onUserNamePressed(context, widget.post);
                         },
-                        child: AutoSizeText(
-                          widget.post.userName,
-                          textAlign: TextAlign.start,
-                          style: PostItem._textStyle,
+                        child: Row(
+                          children: [
+                            const CircleAvatar(
+                              backgroundColor: Colors.white70,
+                              minRadius: 20.0,
+                              child: CircleAvatar(
+                                radius: 10.0,
+                                backgroundImage: NetworkImage(
+                                    'https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png'),
+                              ),
+                            ),
+                            AutoSizeText(
+                              widget.post.userName,
+                              textAlign: TextAlign.start,
+                              style: PostItem._textStyle,
+                            ),
+                          ],
                         ),
                       ),
                       AutoSizeText(
